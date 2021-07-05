@@ -34,8 +34,13 @@ HttpServletRequest 객체는 추가로 여러가지 부가기능도 함께 제�
 ## 📖 세션 관리 기능
 ```java
 request.getSession(create: true)
+
+// 연결된 세션이 있다면 반환
+  // 없으면
+  // true -> 새로 반환 : request.getSession(true);
+  // false -> null 반환 : request.getSession(false);
 ```
-       
-HttpServletRequest, HttpServletResponse는            
+
+`HttpServletRequest`, `HttpServletResponse`는            
 HTTP 요청 메시지, HTTP 응답 메시지를 편리하게 사용하도록 도와주는 객체다.      
 따라서 깊이있는 이해를 하려면 HTTP 스펙이 제공하는 요청, 응답 메시지 자체를 이해해면 좋다.     
