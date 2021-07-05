@@ -26,13 +26,16 @@ HttpServletRequest를 사용하면 다음과 같은 HTTP 요청 메시지를 편
 HttpServletRequest 객체는 추가로 여러가지 부가기능도 함께 제공한다.
 
 ## 📖 임시 저장소 기능
-해당 HTTP 요청이 시작부터 끝날 때 까지 유지되는 임시 저장소 기능
-저장: request.setAttribute(name, value)
-조회: request.getAttribute(name)
+해당 HTTP 요청이 시작부터 끝날 때 까지 유지되는 임시 저장소 기능    
 
+* **저장 :** request.setAttribute(name, value)    
+* **조회 :** request.getAttribute(name)    
+   
 ## 📖 세션 관리 기능
+```java
 request.getSession(create: true)
-> 중요
-> HttpServletRequest, HttpServletResponse를 사용할 때 가장 중요한 점은 이 객체들이 HTTP 요청
-메시지, HTTP 응답 메시지를 편리하게 사용하도록 도와주는 객체라는 점이다. 따라서 이 기능에 대해서
-깊이있는 이해를 하려면 HTTP 스펙이 제공하는 요청, 응답 메시지 자체를 이해해야 한다
+```
+       
+HttpServletRequest, HttpServletResponse는            
+HTTP 요청 메시지, HTTP 응답 메시지를 편리하게 사용하도록 도와주는 객체다.      
+따라서 깊이있는 이해를 하려면 HTTP 스펙이 제공하는 요청, 응답 메시지 자체를 이해해면 좋다.     
