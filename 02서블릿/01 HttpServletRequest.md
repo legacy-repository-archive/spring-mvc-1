@@ -5,10 +5,10 @@ HttpServletRequest
    
 **HTTP 요청 메시지**  
 ```http
-POST /save HTTP/1.1
-Host: localhost:8080
+POST /save HTTP/1.1                                     # START LINE
+Host: localhost:8080                                    # HEADER
 Content-Type: application/x-www-form-urlencoded
-username=kim&age=20
+username=kim&age=20                                     # BODY
 ```
 HttpServletRequest를 사용하면 다음과 같은 HTTP 요청 메시지를 편리하게 조회할 수 있다.
 
