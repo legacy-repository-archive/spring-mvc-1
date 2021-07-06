@@ -64,16 +64,15 @@ String[] usernames = request.getParameterValues("username");
 * **메시지 바디에 쿼리 파리미터 형식**으로 데이터를 전달한다. `username=hello&age=20`    
 * `src/main/webapp/basic/hello-form.html`생성   
 
-http://localhost:8080/basic/hello-form.html
-> 주의
-> 웹 브라우저가 결과를 캐시하고 있어서, 과거에 작성했던 html 결과가 보이는 경우도 있다. 이때는 웹
-브라우저의 새로 고침을 직접 선택해주면 된다. 물론 서버를 재시작 하지 않아서 그럴 수도 있다.
-POST의 HTML Form을 전송하면 웹 브라우저는 다음 형식으로 HTTP 메시지를 만든다. (웹 브라우저
-개발자 모드 확인)
+POST의 HTML Form을 전송하면 웹 브라우저는 다음 형식으로 HTTP 메시지를 만든다. (웹 브라우저 개발자 모드 확인)
 요청 URL: http://localhost:8080/request-param
+
+```
 content-type: application/x-www-form-urlencoded
 message body: username=hello&age=20
-application/x-www-form-urlencoded 형식은 앞서 GET에서 살펴본 쿼리 파라미터 형식과 같다.
+application/x-www-form-urlencoded 
+```
+
 따라서 쿼리 파라미터 조회 메서드를 그대로 사용하면 된다.
 클라이언트(웹 브라우저) 입장에서는 두 방식에 차이가 있지만, 서버 입장에서는 둘의 형식이 동일하므로,
 request.getParameter() 로 편리하게 구분없이 조회할 수 있다.
