@@ -104,16 +104,16 @@ message body: username=hello&age=20
 서버에서는 HTTP 메시지 바디의 데이터를 `InputStream`을 사용해서 직접 읽을 수 있다.      
 
 ```java
-    @WebServlet(name = "requestBodyStringServlet", urlPatterns = "/request-bodystring")
-    public class RequestBodyStringServlet extends HttpServlet {
-        @Override
-        protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            ServletInputStream inputStream = request.getInputStream();
-            String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-            System.out.println("messageBody = " + messageBody);
-            response.getWriter().write("ok");  
-        }
+@WebServlet(name = "requestBodyStringServlet", urlPatterns = "/request-bodystring")
+public class RequestBodyStringServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        System.out.println("messageBody = " + messageBody);
+        response.getWriter().write("ok");  
     }
+}
 ```   
 **참고**       
 * inputStream은 byte 코드를 반환한다.    
