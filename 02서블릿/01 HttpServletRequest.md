@@ -74,10 +74,12 @@ request.getSession(create: true)
 ```java
     private void printStartLine(HttpServletRequest request) {
         System.out.println("--- REQUEST-LINE - start ---");
+        // GET ~~~ HTTP/1.1  
         System.out.println("request.getMethod() = " + request.getMethod());         // GET
         System.out.println("request.getProtocal() = " + request.getProtocol());     // HTTP / 1.1
         System.out.println("request.getScheme() = " + request.getScheme());         // http
-                                                                                    // http://localhost:8080/request-header
+        
+        // http://localhost:8080/request-header
         System.out.println("request.getRequestURL() = " + request.getRequestURL()); // /request-test
         System.out.println("request.getRequestURI() = " + request.getRequestURI()); // username=hi
         System.out.println("request.getQueryString() = " + request.getQueryString());
