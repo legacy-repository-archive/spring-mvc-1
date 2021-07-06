@@ -36,6 +36,10 @@ String username = request.getParameter("username");
 ```java
 Enumeration<String> parameterNames = request.getParameterNames();
 ```
+```java
+request.getParameterNames().asIterator()
+ .forEachRemaining(paramName -> System.out.println(paramName + "=" + request.getParameter(paramName)));
+```
    
 **파라미터를 Map으로 조회**   
 ```java
