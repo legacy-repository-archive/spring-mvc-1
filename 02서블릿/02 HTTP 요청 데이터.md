@@ -25,11 +25,9 @@ http://localhost:8080/request-param?username=hello&age=20
 ```  
 ```http
 GET /test?username=hello&age=20 HTTP/1.1
-Host: localhost:8080
-Content-Type: application/x-www-form-urlencoded        
-
-Query String Parameter
-username=hello&age=20
+Host: localhost:8080  
+Content-Type: application/x-www-form-urlencoded          
+message body: username=hello&age=20   
 ```
 
 `쿼리 파라미터`는 URL에 `?`를 시작으로 입력 및 `&` 로 구분하는 파라미터를 의미한다.     
@@ -82,10 +80,7 @@ http://localhost:8080/request-param
 POST /test HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded        
-
-Form data
-username: hello
-age: 20
+message body: username=hello&age=20
 ```
 
 * 요청 URL: `http://localhost:8080/request-param`
@@ -126,5 +121,37 @@ age: 20
 * 여기서는 UTF_8 Charset을 지정해주었다.    
 
 단순 텍스트이기에 포스트맨으로 테스트 가능하다.    
+      
+## 📖 HTTP 요청 데이터 - API 메시지 바디 - JSON    
+이번에는 HTTP API에서 주로 사용하는 JSON 형식으로 데이터를 전달해보자.   
+         
+**JSON 형식 전송**   
+```http   
+POST http://localhost:8080/request-body-json   
+Host: localhost:8080    
+content-type: application/json   
+message body: {"username": "hello", "age": 20}   
+```
+* 결과: messageBody = {"username": "hello", "age": 20}
+        
+```java
+    @WebServlet(name = "requestBodyJsonServlet", urlPatterns = "/request-bodyjson")
+    public class RequestBodyJsonServlet extends HttpServlet {
+        private ObjectMapper objectMapper = new ObjectMapper();
 
-
+        @Override
+        protected void service(HttpServletRequest request, HttpServletResponse
+                response)
+                throws ServletException, IOException {
+            ServletInputStream inputStream = request.getInputStream();
+            String messageBody = StreamUtils.copyToString(inputStream,
+                    StandardCharsets.UTF_8);
+            System.out.println("messageBody = " + messageBody);
+            HelloData helloData = objectMapper.readValue(messageBody,
+                    HelloData.class);
+            System.out.println("helloData.username = " + helloData.getUsername());
+            System.out.println("helloData.age = " + helloData.getAge());
+            response.getWriter().write("ok");
+        }
+    }
+```
