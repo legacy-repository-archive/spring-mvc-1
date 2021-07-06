@@ -99,4 +99,28 @@ age: 20
 * `GET URL 쿼리 파라미터` 형식으로 데이터를 전달할 때는 **HTTP 메시지 바디를 사용하지 않기에 content-type이 없다.**    
 * `POST HTML Form` 형식으로 데이터를 전달하면 HTTP 메시지 바디에 해당 데이터를 포함해서 보내기에      
   바디에 포함된 데이터가 어떤 형식인지 **content-type을 꼭 지정해야 한다.**       
-* 이렇게 폼으로 데이터를 전송하는 형식을 `application/x-www-form-urlencoded`라 한다.    
+* 이렇게 폼으로 데이터를 전송하는 형식을 `application/x-www-form-urlencoded`라 한다.  
+
+## 📖 HTTP 요청 데이터 - API 메시지 바디 - 단순 텍스트
+**`HTTP message body`에 데이터를 직접 담아서 요청하는 방식**도 존재한다.       
+`HTTP API`에서 주로 사용하며 `JSON`, `XML`, `TEXT` 데이터 형식들이 있으며 **주로 JSON 사용한다.**           
+또한, `POST`, `PUT`, `PATCH`와 같은 다양한 `HTTP 메서드`를 이용할 수 있다.         
+
+서버에서는 HTTP 메시지 바디의 데이터를 `InputStream`을 사용해서 직접 읽을 수 있다.      
+
+```java
+    @WebServlet(name = "requestBodyStringServlet", urlPatterns = "/request-bodystring")
+    public class RequestBodyStringServlet extends HttpServlet {
+        @Override
+        protected void service(HttpServletRequest request, HttpServletResponse
+                response)
+                throws ServletException, IOException {
+
+            ServletInputStream inputStream = request.getInputStream();
+            String messageBody = StreamUtils.copyToString(inputStream,
+                    StandardCharsets.UTF_8);
+            System.out.println("messageBody = " + messageBody);
+            response.getWriter().write("ok");
+        }
+    }
+```
