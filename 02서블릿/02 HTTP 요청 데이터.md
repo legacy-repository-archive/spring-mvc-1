@@ -74,12 +74,14 @@ String[] usernames = request.getParameterValues("username");
 * `src/main/webapp/basic/hello-form.html`생성   
 
 POST의 HTML Form을 전송하면 웹 브라우저는 다음 형식으로 HTTP 메시지를 만든다. (웹 브라우저 개발자 모드 확인)
-
+   
+```url
+http://localhost:8080/request-param
+```
 ```http
 POST /test HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded        
-
 
 username: hello
 age: 20
