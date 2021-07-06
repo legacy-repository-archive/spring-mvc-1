@@ -23,6 +23,15 @@ HTTP 요청 데이터
 ```url
 http://localhost:8080/request-param?username=hello&age=20
 ```  
+```http
+GET /test?username=hello&age=20 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded        
+
+Query String Parameter
+username=hello&age=20
+```
+
 `쿼리 파라미터`는 URL에 `?`를 시작으로 입력 및 `&` 로 구분하는 파라미터를 의미한다.     
 서버에서는 `HttpServletRequest`메서드를 통해 쿼리 파라미터를 편리하게 조회할 수 있다.    
 
@@ -70,6 +79,7 @@ POST의 HTML Form을 전송하면 웹 브라우저는 다음 형식으로 HTTP �
 POST /test HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded        
+
 
 username: hello
 age: 20
