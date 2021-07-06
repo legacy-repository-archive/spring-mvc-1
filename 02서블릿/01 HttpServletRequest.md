@@ -54,6 +54,7 @@ request.getSession(create: true)
 * `request.getSession(true);` : 새로 반환 
 * `request.getSession(false);` : null 반환 
 
+# 📗 HttpServletRequest - 기본 사용법
  
 
 
