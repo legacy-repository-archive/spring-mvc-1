@@ -88,5 +88,8 @@ username: hello
 age: 20
 ```
 
-
-
+* 요청 URL: http://localhost:8080/request-param
+* content-type: application/x-www-form-urlencoded
+     
+클라이언트(웹 브라우저) 입장에서는 두 방식에 차이가 있지만, 서버 입장에서는 둘의 형식이 동일하므로,    
+`request.getParameter()` 는 GET URL 쿼리 파라미터 형식도 지원하고, POST HTML Form 형식도 둘 다 지원한다      
