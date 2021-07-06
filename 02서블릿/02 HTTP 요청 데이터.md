@@ -56,13 +56,13 @@ String[] usernames = request.getParameterValues("username");
 `request.getParameterValues()`의 첫 번째 값을 반환한다.       
        
 ## 📖 HTTP 요청 데이터 - POST HTML Form          
-`POST 방식`은 
-주로 `회원 가입`, `상품 주문` 등에서 사용하는 방식이다.          
-           
-**특징**      
-* `content-type: application/x-www-form-urlencoded`
-* 메시지 바디에 쿼리 파리미터 형식으로 데이터를 전달한다. `username=hello&age=20`
-* `src/main/webapp/basic/hello-form.html`생성
+`POST 방식`은 **메시지 바디에 `쿼리 파리미터` 형식으로 데이터를 전달하는 방식이다.**      
+주로 `회원 가입`, `상품 주문` 등에서 사용하는 방식이다.              
+                      
+**특징**        
+* `content-type: application/x-www-form-urlencoded`    
+* **메시지 바디에 쿼리 파리미터 형식**으로 데이터를 전달한다. `username=hello&age=20`    
+* `src/main/webapp/basic/hello-form.html`생성   
 
 http://localhost:8080/basic/hello-form.html
 > 주의
