@@ -120,11 +120,11 @@ age: 20
         }
     }
 ```   
-**참고**  
-> inputStream은 byte 코드를 반환한다. byte 코드를 우리가 읽을 수 있는 문자(String)로 보려면 문자표
-(Charset)를 지정해주어야 한다. 여기서는 UTF_8 Charset을 지정해주었다.
-문자 전송
-POST http://localhost:8080/request-body-string
-content-type: text/plain
-message body: hello
-결과: messageBody = hello
+**참고**       
+* inputStream은 byte 코드를 반환한다.    
+* byte 코드를 우리가 읽을 수 있는 문자(String)로 보려면 문자표(Charset)를 지정해주어야 한다.   
+* 여기서는 UTF_8 Charset을 지정해주었다.    
+
+단순 텍스트이기에 포스트맨으로 테스트 가능하다.    
+
+
