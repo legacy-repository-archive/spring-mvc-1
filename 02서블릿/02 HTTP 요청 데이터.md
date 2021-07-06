@@ -135,23 +135,25 @@ message body: {"username": "hello", "age": 20}
 * 결과: messageBody = {"username": "hello", "age": 20}
         
 ```java
-    @WebServlet(name = "requestBodyJsonServlet", urlPatterns = "/request-bodyjson")
-    public class RequestBodyJsonServlet extends HttpServlet {
-        private ObjectMapper objectMapper = new ObjectMapper();
+@Getter @Setter
+class HelloData {
+    private String username;
+    private int age;
+}
 
-        @Override
-        protected void service(HttpServletRequest request, HttpServletResponse
-                response)
-                throws ServletException, IOException {
-            ServletInputStream inputStream = request.getInputStream();
-            String messageBody = StreamUtils.copyToString(inputStream,
-                    StandardCharsets.UTF_8);
-            System.out.println("messageBody = " + messageBody);
-            HelloData helloData = objectMapper.readValue(messageBody,
-                    HelloData.class);
-            System.out.println("helloData.username = " + helloData.getUsername());
-            System.out.println("helloData.age = " + helloData.getAge());
-            response.getWriter().write("ok");
-        }
+@WebServlet(name = "requestBodyJsonServlet", urlPatterns = "/request-bodyjson")
+public class RequestBodyJsonServlet extends HttpServlet {
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        System.out.println("messageBody = " + messageBody);
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+        System.out.println("helloData.username = " + helloData.getUsername());
+        System.out.println("helloData.age = " + helloData.getAge());
+        response.getWriter().write("ok");
     }
+}
 ```
