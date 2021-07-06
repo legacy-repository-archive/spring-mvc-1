@@ -25,17 +25,24 @@ http://localhost:8080/request-param?username=hello&age=20
 ```  
 `쿼리 파라미터`는 URL에 `?`를 시작으로 입력 및 `&` 로 구분하는 파라미터를 의미한다.     
 서버에서는 `HttpServletRequest`메서드를 통해 쿼리 파라미터를 편리하게 조회할 수 있다.    
+
+**단일 파라미터 조회**   
+```java
+String username = request.getParameter("username"); 
+```
+
+**파라미터 이름들모두 조회**   
+```java
+Enumeration<String> parameterNames = request.getParameterNames();
+```
    
+**파라미터를 Map으로 조회**   
 ```java
-String username = request.getParameter("username"); //단일 파라미터 조회
+Map<String, String[]> parameterMap = request.getParameterMap(); 
 ```
+  
+**복수 파라미터 조회**   
 ```java
-Enumeration<String> parameterNames = request.getParameterNames(); //파라미터 이름들모두 조회
-```
-```java
-Map<String, String[]> parameterMap = request.getParameterMap(); //파라미터를 Map으로 조회
-```
-```java
-String[] usernames = request.getParameterValues("username"); //복수 파라미터 조회
+String[] usernames = request.getParameterValues("username"); 
 ```
 
