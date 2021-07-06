@@ -93,3 +93,10 @@ age: 20
      
 클라이언트(웹 브라우저) 입장에서는 두 방식에 차이가 있지만, 서버 입장에서는 둘의 형식이 동일하므로,    
 `request.getParameter()` 는 GET URL 쿼리 파라미터 형식도 지원하고, POST HTML Form 형식도 둘 다 지원한다      
+
+**참고**
+* **content-type**은 **HTTP 메시지 바디의 데이터 형식을 지정하는 것**이다.   
+* `GET URL 쿼리 파라미터` 형식으로 데이터를 전달할 때는 **HTTP 메시지 바디를 사용하지 않기에 content-type이 없다.**
+* `POST HTML Form` 형식으로 데이터를 전달하면 HTTP 메시지 바디에 해당 데이터를 포함해서 보내기에 
+  바디에 포함된 데이터가 어떤 형식인지 **content-type을 꼭 지정해야 한다.**    
+* 이렇게 폼으로 데이터를 전송하는 형식을 `application/x-www-form-urlencoded`라 한다.
