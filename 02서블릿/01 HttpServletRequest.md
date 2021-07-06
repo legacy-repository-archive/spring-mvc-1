@@ -230,3 +230,7 @@ request.getLocalAddr() = 0:0:0:0:0:0:0:1
 request.getLocalPort() = 8080
 --- 기타 조회 end ---
 ```
+
+** 참고**
+> 로컬에서 테스트하면 IPv6 정보가 나오는데, IPv4 정보를 보고 싶으면 다음 옵션을 VM options에넣어주면 된다.   
+> -Djava.net.preferIPv4Stack=true      
