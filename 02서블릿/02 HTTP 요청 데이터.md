@@ -50,4 +50,9 @@ Map<String, String[]> parameterMap = request.getParameterMap();
 ```java
 String[] usernames = request.getParameterValues("username"); 
 ```
+   
+**복수 파라미터에서 단일 파라미터 조회**      
+여러 값이 들어왔는데 `request.getParameter()`를 사용하면     
+`request.getParameterValues()`의 첫 번째 값을 반환한다.       
+
 
