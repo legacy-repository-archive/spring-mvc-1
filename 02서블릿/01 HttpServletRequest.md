@@ -13,18 +13,16 @@ username=kim&age=20                                     # BODY
 ```
 HttpServletRequest를 사용하면 다음과 같은 HTTP 요청 메시지를 편리하게 조회할 수 있다.
     
-**START LINE**   
-* HTTP 메소드
-* URL
-* 쿼리 스트링
-* 스키마, 프로토콜
-
-**헤더**   
-* 헤더 조회
- 
-**바디**   
-* form 파라미터 형식 조회   
-* message body 데이터 직접 조회   
+* **START LINE**   
+    * HTTP 메소드
+    * URL
+    * 쿼리 스트링
+    * 스키마, 프로토콜
+* **헤더**   
+    * 헤더 조회
+* **바디**   
+    * form 파라미터 형식 조회   
+    * message body 데이터 직접 조회   
   
 HttpServletRequest 객체는 추가로 여러가지 부가기능도 함께 제공한다.
     
