@@ -65,13 +65,16 @@ String[] usernames = request.getParameterValues("username");
 * `src/main/webapp/basic/hello-form.html`생성   
 
 POST의 HTML Form을 전송하면 웹 브라우저는 다음 형식으로 HTTP 메시지를 만든다. (웹 브라우저 개발자 모드 확인)
-요청 URL: http://localhost:8080/request-param
 
+```http
+POST /test HTTP/1.1
+Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded        
+
+username: hello
+age: 20
 ```
-content-type: application/x-www-form-urlencoded
-message body: username=hello&age=20
-application/x-www-form-urlencoded 
-```
+
 
 따라서 쿼리 파라미터 조회 메서드를 그대로 사용하면 된다.
 클라이언트(웹 브라우저) 입장에서는 두 방식에 차이가 있지만, 서버 입장에서는 둘의 형식이 동일하므로,
