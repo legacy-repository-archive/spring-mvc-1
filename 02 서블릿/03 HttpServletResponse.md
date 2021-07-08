@@ -43,9 +43,6 @@ public class ResponseHeaderServlet extends HttpServlet {
 물론, `헤더 설정` 안에 `캐시 설정`, `콘텐츠 타입 설정`와 같은 설정들을 넣을 수 있다.      
     
 ### Header 편의 메서드   
-`Header 편의 메서드`를 통해        
-`setHeader()` 말고 의미있는 이름의 메서드를 사용할 수 있다.       
-  
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
@@ -92,5 +89,7 @@ private void redirect(HttpServletResponse response) throws IOException {
     response.sendRedirect("/basic/hello-form.html");            // 해당 url로 리다이렉트를 시킨다.  
 }
 ```
-
+`Header 편의 메서드`를 통해        
+`setHeader()` 말고 의미있는 이름의 메서드를 사용할 수 있다.       
+  
 
