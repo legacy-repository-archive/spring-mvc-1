@@ -87,3 +87,5 @@ private void redirect(HttpServletResponse response) throws IOException {
     response.sendRedirect("/basic/hello-form.html");
 }
 ```
+`Header 편의 메서드`를 통해      
+`setHeader()` 말고 의미있는 이름의 메서드를 사용할 수 있다.     
