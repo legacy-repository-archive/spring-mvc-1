@@ -37,9 +37,12 @@ public class ResponseHeaderServlet extends HttpServlet {
         writer.println("ok");
     }
 }
-```
-
-### 
+```  
+응답은 요청과 다르게 데이터를 매핑하는 작업은 없고       
+간단히 `응답코드` + `헤더 설정` + `바디(데이터)`의 작업만 수행하면 된다.          
+물론, `헤더 설정` 안에 `캐시 설정`, `콘텐츠 타입 설정`와 같은 설정들을 넣을 수 있다.      
+    
+### Header 편의 메서드   
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
