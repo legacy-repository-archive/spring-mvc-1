@@ -89,7 +89,7 @@ private void redirect(HttpServletResponse response) throws IOException {
     //response.setStatus(HttpServletResponse.SC_FOUND);         // 302
     //response.setHeader("Location", "/basic/hello-form.html"); // 302 응답코드와 같이 사용시 이동 url 표현  
     
-    response.sendRedirect("/basic/hello-form.html");  // 해당 url로 리다이렉트를 시킨다.  
+    response.sendRedirect("/basic/hello-form.html");            // 해당 url로 리다이렉트를 시킨다.  
 }
 ```
 
