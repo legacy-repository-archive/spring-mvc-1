@@ -43,6 +43,9 @@ public class ResponseHeaderServlet extends HttpServlet {
 물론, `헤더 설정` 안에 `캐시 설정`, `콘텐츠 타입 설정`와 같은 설정들을 넣을 수 있다.      
     
 ### Header 편의 메서드   
+`Header 편의 메서드`를 통해        
+`setHeader()` 말고 의미있는 이름의 메서드를 사용할 수 있다.       
+  
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
@@ -65,27 +68,29 @@ public class ResponseHeaderServlet extends HttpServlet {
 private void content(HttpServletResponse response) {
     //Content-Type: text/plain;charset=utf-8
     //Content-Length: 2
-    //response.setHeader("Content-Type", "text/plain;charset=utf-8");
+    
     response.setContentType("text/plain");
     response.setCharacterEncoding("utf-8");
-    //response.setContentLength(2); //(생략시 자동 생성)
+    response.setContentLength(2); // 해당 길이 만큼만 데이터를 보낸다, 생략시 길이에 맞는 값으로 자동 생성
 }
 
 private void cookie(HttpServletResponse response) {
     //Set-Cookie: myCookie=good; Max-Age=600;
     //response.setHeader("Set-Cookie", "myCookie=good; Max-Age=600");
-    Cookie cookie = new Cookie("myCookie", "good");
-    cookie.setMaxAge(600); //600초
-    response.addCookie(cookie);
+    
+    Cookie cookie = new Cookie("myCookie", "good");   // Key-Value 데이터  
+    cookie.setMaxAge(600);                            // MaxAge 600초
+    response.addCookie(cookie);                       // 쿠키를 담는다.   
 }
 
 private void redirect(HttpServletResponse response) throws IOException {
     //Status Code 302
     //Location: /basic/hello-form.html
-    //response.setStatus(HttpServletResponse.SC_FOUND); //302
-    //response.setHeader("Location", "/basic/hello-form.html");
-    response.sendRedirect("/basic/hello-form.html");
+    //response.setStatus(HttpServletResponse.SC_FOUND);         // 302
+    //response.setHeader("Location", "/basic/hello-form.html"); // 302 응답코드와 같이 사용시 이동 url 표현  
+    
+    response.sendRedirect("/basic/hello-form.html");  // 해당 url로 리다이렉트를 시킨다.  
 }
 ```
-`Header 편의 메서드`를 통해      
-`setHeader()` 말고 의미있는 이름의 메서드를 사용할 수 있다.     
+
+
