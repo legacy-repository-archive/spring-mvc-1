@@ -17,6 +17,7 @@ HttpServletResponse
 * Redirect   
 
 ## HttpServletResponse 실제 예시   
+### 일반적인 작성 방법 
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
@@ -37,6 +38,8 @@ public class ResponseHeaderServlet extends HttpServlet {
     }
 }
 ```
+
+### 
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
