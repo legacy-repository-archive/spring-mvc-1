@@ -27,7 +27,8 @@ http://localhost:8080/request-param?username=hello&age=20
 GET /test?username=hello&age=20 HTTP/1.1
 Host: localhost:8080  
 Content-Type: application/x-www-form-urlencoded          
-message body: username=hello&age=20   
+
+username=hello&age=20   
 ```
 
 `쿼리 파라미터`는 URL에 `?`를 시작으로 입력 및 `&` 로 구분하는 파라미터를 의미한다.     
@@ -80,7 +81,8 @@ http://localhost:8080/request-param
 POST /test HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded        
-message body: username=hello&age=20
+
+username=hello&age=20
 ```
 
 * 요청 URL: `http://localhost:8080/request-param`
@@ -130,7 +132,8 @@ public class RequestBodyStringServlet extends HttpServlet {
 POST http://localhost:8080/request-body-json   
 Host: localhost:8080    
 content-type: application/json   
-message body: {"username": "hello", "age": 20}   
+
+{"username": "hello", "age": 20}   
 ```
 * 결과: messageBody = {"username": "hello", "age": 20}
         
