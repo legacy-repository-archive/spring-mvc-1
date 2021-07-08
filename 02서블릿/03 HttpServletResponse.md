@@ -16,6 +16,7 @@ HttpServletResponse
 * 쿠키  
 * Redirect   
 
+## HttpServletResponse 실제 예시   
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
@@ -29,6 +30,20 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.setHeader("Cache-Control", "no-cache, no-store, mustrevalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("my-header", "hello");
+        
+        //[message body]
+        PrintWriter writer = response.getWriter();
+        writer.println("ok");
+    }
+}
+```
+```java
+@WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
+public class ResponseHeaderServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponseresponse) throws ServletException, IOException {
+        //[status-line]
+        response.setStatus(HttpServletResponse.SC_OK); //200
         
         //[Header 편의 메서드]
         content(response);
