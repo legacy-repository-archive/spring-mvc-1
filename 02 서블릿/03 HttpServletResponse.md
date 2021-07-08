@@ -71,7 +71,7 @@ private void content(HttpServletResponse response) {
     
     response.setContentType("text/plain");
     response.setCharacterEncoding("utf-8");
-    response.setContentLength(2); // 해당 길이 만큼만 데이터를 보낸다, 생략시 길이에 맞는 값으로 자동 생성
+    response.setContentLength(2);                     // 길이 만큼의 데이터만 응답, 생략시 길이에 맞는 값으로 자동 생성
 }
 
 private void cookie(HttpServletResponse response) {
