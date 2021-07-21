@@ -1,8 +1,7 @@
 HttpServletResponse
-======================
-
-# HttpServletResponse 기본 사용법
-## HttpServletResponse 역할  
+======================  
+# 📘 HttpServletResponse 개요
+## 📖 HttpServletResponse 역할  
 `HttpServletResponse` 는 응답과 관련된 처리를 할 수 있으며       
 `응답 메시지를 생성` 및 `편의 기능을 제공`해준다.        
    
@@ -16,8 +15,8 @@ HttpServletResponse
 * 쿠키  
 * Redirect   
 
-## HttpServletResponse 실제 예시   
-### 일반적인 작성 방법 
+## 📗 HttpServletResponse 기본 사용법   
+### 📖 일반적인 작성 방법 
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
@@ -42,7 +41,7 @@ public class ResponseHeaderServlet extends HttpServlet {
 간단히 `응답코드` + `헤더 설정` + `바디(데이터)`의 작업만 수행하면 된다.          
 물론, `헤더 설정` 안에 `캐시 설정`, `콘텐츠 타입 설정`와 같은 설정들을 넣을 수 있다.      
     
-### Header 편의 메서드   
+### 📖 Header 편의 메서드   
 ```java
 @WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
