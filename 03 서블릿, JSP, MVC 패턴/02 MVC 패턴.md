@@ -3,6 +3,9 @@ MVC 패턴
 
 # MVC 패턴 - 개요
 ## 너무 많은 역할  
+
+![before_mvc](https://user-images.githubusercontent.com/50267433/126495004-2137005e-25ee-499d-8378-86e37644fe68.PNG)
+
 서블릿이나 JSP만으로 비즈니스 로직과 뷰 렌더링을 처리하면 너무 많은 역할을 하게 될 것이다.        
 이는 곧 코드의 수정이 필요하면, 비즈니스 로직과 UI 로직 모두 손봐야하는 문제를 야기한다.        
               
@@ -17,7 +20,10 @@ MVC 패턴
 # Model View Controller
 MVC 패턴은 `컨트롤러(Controller)`와 `뷰(View)`라는 영역으로 서로 역할을 나눈 것을 말한다.           
 웹 애플리케이션은 보통 이 MVC 패턴을 사용한다.          
-        
+  
+![mvc1](https://user-images.githubusercontent.com/50267433/126495051-68cad882-4572-4583-98e5-bfbf490d2798.PNG)     
+![mvc2](https://user-images.githubusercontent.com/50267433/126495057-ca817969-33d6-4a55-808b-8167eda130bc.png)      
+
 * **컨트롤러:**   
   HTTP 요청을 받아서 **파라미터를 검증**하고, **비즈니스 로직을 실행**한다.     
   그리고 **뷰에 전달할 결과 데이터를 조회해서 모델에 담는다.**      
