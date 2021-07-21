@@ -71,7 +71,7 @@ request.getSession(create: true)
         }
     }
 ```
-## START LINE 
+## 📖 START LINE 
 ```java
     private void printStartLine(HttpServletRequest request) {
         // http://localhost:8080/request-header?username=hello
@@ -100,7 +100,7 @@ request.isSecure() = false
 --- REQUEST-LINE - end ---
 ```
 
-## HEADER
+## 📖 HEADER
 
 ```java
     //Header 모든 정보
@@ -141,7 +141,7 @@ accept-language: ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
 --- Headers - end ---
 ```
 
-## HEADER 편리한 조회
+## 📖 HEADER 편리한 조회
 ```java
     //Header 편리한 조회
     private void printHeaderUtils(HttpServletRequest request) {
@@ -195,7 +195,7 @@ request.getCharacterEncoding() = UTF-8
 --- Header 편의 조회 end ---
 ```
 
-## 기타 조회
+## 📖 기타 조회
 ```java
     //기타 정보
     private void printEtc(HttpServletRequest request) {
