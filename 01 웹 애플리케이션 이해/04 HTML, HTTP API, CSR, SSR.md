@@ -53,14 +53,14 @@
    
 ## 서버사이드 렌더링
 > 서버에서 최종 HTML 을 생성해서 클라이언트에 전달   
-
-[#](#)   
- 
+     
+![ssr](https://user-images.githubusercontent.com/50267433/126521104-c98fb3db-8f24-489f-b3cf-f5f3914cc1a5.PNG)      
+      
 ## 클라이언트 사이드 렌더링
-> 
-
-[#](#)
-   
+> 클라이언트에서 서버에게 받은 데이터를 이용해 최종 HTML 을 생성하는 것   
+    
+![csr](https://user-images.githubusercontent.com/50267433/126521162-6b0d6e79-fd1d-4e47-bc3c-b7e3909b4da5.PNG)    
+    
 1. 웹 브라우저 -> 서버 : HTML을 요청한다.      
    웹 브라우저 <- 서버 : 골격만 있는 HTML(index.html) 과 애플리케이션을 구동하는 자바스크립트 링크를 리턴한다.         
 2. 웹 브라우저 -> 서버 : HTML에서 필요로하는 자바스크립트를 서버에 요청한다.(app.js)     
