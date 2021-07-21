@@ -63,7 +63,12 @@ String[] usernames = request.getParameterValues("username");
 여러 값이 들어왔는데 `request.getParameter()`를 사용하면     
 `request.getParameterValues()`의 첫 번째 값을 반환한다.       
        
-## 📖 HTTP 요청 데이터 - POST HTML Form          
+## 📖 HTTP 요청 데이터 - POST HTML Form       
+      
+![form_post](https://user-images.githubusercontent.com/50267433/126496451-446c2d9a-91b0-438e-af59-8504b5deadf1.PNG)    
+     
+
+
 `POST 방식`은 **메시지 바디에 `쿼리 파리미터` 형식으로 데이터를 전달하는 방식이다.**      
 주로 `회원 가입`, `상품 주문` 등에서 사용하는 방식이다.              
                       
