@@ -3,8 +3,9 @@ HttpServletRequest
 # 📘 HttpServletRequest 개요 
 ## 📖 HttpServletRequest 역할
 서블릿은 **`HTTP 요청 메시지를 파싱`하고 그 결과를 `HttpServletRequest 객체`에 담아서 제공한다.**       
-   
-**HTTP 요청 메시지**  
+       
+![http-message-get](https://user-images.githubusercontent.com/50267433/126497276-f0ddfed0-9b91-46fa-a26f-51056feec165.PNG)   
+
 ```http
 POST /save HTTP/1.1                                     # START LINE
 Host: localhost:8080                                    # HEADER
