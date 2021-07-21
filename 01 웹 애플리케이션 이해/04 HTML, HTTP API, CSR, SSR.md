@@ -1,19 +1,29 @@
-# 정적 리소스  
+# 정적 리소스    
+     
+![resource-static](https://user-images.githubusercontent.com/50267433/126520466-43ac0cf4-3d4a-4215-be14-1ecfe46a0fbe.PNG)    
+    
 * 정적 리소스는 `고정된 HTML 파일`, `CSS`, `JS`, `이미지`, `영상`등을 의미하고 웹 서버는 이를 제공한다.   
 * 정적 리소스를 받는 대상들을 요청하고 받는 대상은 주로, 웹 브라우저이다.   
 
-# 동적으로 제공하는 HTML 페이지 
+# 동적으로 제공하는 HTML 페이지   
+    
+![resource-html](https://user-images.githubusercontent.com/50267433/126520489-5794e3fc-9747-4507-b769-0bd3221dff98.PNG)      
+   
 * 동적으로 필요한 HTML 파일을 생성해서 전달한다. (서버에서 HTML 만들어서 제공하는 것)     
     * 이 타이밍에 렌더링 하는 것을 바로 `서버 사이드 렌더링`이다         
     * 서버에서 데이터를 가공하여 HTML 만들어 넘기는 것이다.       
 * 웹 브라우저 : HTML 해석한다.   
 
-# HTTP API  
+# HTTP API    
+     
+![resource-api](https://user-images.githubusercontent.com/50267433/126520583-21bf9cb8-1b1e-4d08-b7c1-b6c68796f7f1.PNG)    
+![resource-api-multi](https://user-images.githubusercontent.com/50267433/126520620-c611d131-11ee-4faa-ac74-8dcf578d992b.PNG)    
+     
 * HTML이 아니라 **데이터를 전달한다.**     
 * 주로 JSON 형식을 사용한다.(XML도 있다.)   
 * 다양한 시스템에서 호출을 한다. (웹, 앱 클라이언트, 서버 to 서버 등등)      
    
-[#](#)     
+     
 
 **정리**    
 * 주로 JSON 형태로 데이터를 통신한다.   
