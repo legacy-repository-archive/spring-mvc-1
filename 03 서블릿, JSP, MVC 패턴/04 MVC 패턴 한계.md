@@ -3,8 +3,7 @@ MVC 패턴 한계
 MVC 패턴을 적용함으로써 비즈니스 로직과 뷰 로직이 분리가 되었다.      
 다만, 여러 컨트롤러를 봤을 때 중복된 코드가 많고, 필요하지 않는 코드들도 보인다.       
   
-# MVC 컨트롤러의 단점    
-
+# 📕 MVC 컨트롤러의 단점      
 ```java
 @WebServlet(name = "mvcMemberFormServlet", urlPatterns = "/servlet-mvc/members/new-form")
 public class MvcMemberFormServlet extends HttpServlet {
@@ -20,7 +19,7 @@ public class MvcMemberFormServlet extends HttpServlet {
 단, 해당 코드만에서'만' 발생하는 문제가 아니다.           
 비슷한 유형의 코드도 동일하게 발생하는 문제를 다룰 것이다.         
   
-## ViewPath에 중복
+## 📖 ViewPath에 중복
 ```java
 String viewPath = "/WEB-INF/views/new-form.jsp";
 ```
@@ -36,7 +35,7 @@ String viewPath = "/WEB-INF/views/new-form.jsp";
 * **jsp :** `/WEB-INF/`
 * **thymeleaf :** `/resource/templates`  
     
-## 포워드 중복
+## 📖 포워드 중복
 
 ```java
 RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
@@ -46,7 +45,7 @@ dispatcher.forward(request, response);
 **View로 이동하는 코드가 항상 중복 호출되어야 하며 그 모습 또한 동일하다.**                 
 물론 이 부분을 메서드로 공통화해도 되지만, 해당 메서드도 항상 직접 호출해야 한다.     
      
-## 사용하지 않는 코드
+## 📖 사용하지 않는 코드
 ```java
 HttpServletRequest request, HttpServletResponse response
 ```
@@ -59,7 +58,7 @@ HttpServletRequest request, HttpServletResponse response
 또한 `HttpServletRequest` , `HttpServletResponse` 클래스는         
 개발자가 직접 생성하고 다루는 대상이 아니다보니 테스트 케이스를 작성하기도 어렵다.          
 
-## 공통 처리가 어렵다.
+## 📖 공통 처리가 어렵다.
    
 앞서 보았던 많은 단점들은 전부 `공통`과 `중복`이라는 키워드로 설명할 수 있다.     
 그리고 기능이 복잡해질 수록 공통으로 처리해야 하는 부분이 점점 더 많이 증가할 것이다.   
