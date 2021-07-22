@@ -6,8 +6,16 @@ MVC 패턴을 적용함으로써 비즈니스 로직과 뷰 로직이 분리가 
 # MVC 컨트롤러의 단점    
 
 ```java
-
-```  
+@WebServlet(name = "mvcMemberFormServlet", urlPatterns = "/servlet-mvc/members/new-form")
+public class MvcMemberFormServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String viewPath = "/WEB-INF/views/new-form.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        dispatcher.forward(request, response);
+    }
+}
+```    
 위와 같은 코드를 기준으로 어떠한 문제점이 발생하는지 알아보고자 한다.              
 단, 해당 코드만에서'만' 발생하는 문제가 아니다.           
 비슷한 유형의 코드도 동일하게 발생하는 문제를 다룰 것이다.         
@@ -50,7 +58,7 @@ HttpServletRequest request, HttpServletResponse response
 `HttpServletRequest`, `HttpServletResponse` 객체는 사용할 때도 있고 사용하지 않을 때도 있다.      
 또한 `HttpServletRequest` , `HttpServletResponse` 클래스는         
 개발자가 직접 생성하고 다루는 대상이 아니다보니 테스트 케이스를 작성하기도 어렵다.          
-    
+
 ## 공통 처리가 어렵다.
    
 앞서 보았던 많은 단점들은 전부 `공통`과 `중복`이라는 키워드로 설명할 수 있다.     
