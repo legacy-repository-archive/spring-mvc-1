@@ -55,7 +55,6 @@ private void processDispatchResult(HttpServletRequest request, HttpServletRespon
 protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
     View view;
     String viewName = mv.getViewName();
-   
     view = resolveViewName(viewName, mv.getModelInternal(), locale, request);   // 6. 뷰 리졸버를 통해서 뷰 찾기, 7. View 반환
     view.render(mv.getModelInternal(), request, response);                      // 8. 뷰 렌더링
 }
