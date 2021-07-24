@@ -78,7 +78,7 @@ protected void render(ModelAndView mv, HttpServletRequest request, HttpServletRe
 }
 ```
 <details>
-<summary>noHandlerFound()/getHandler()/getHandlerAdapter()</summary>
+<summary>noHandlerFound(), getHandler(), getHandlerAdapter()</summary>
 <div markdown="1">
 	
 ```java
