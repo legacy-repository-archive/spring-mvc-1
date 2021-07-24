@@ -82,7 +82,18 @@ protected void render(ModelAndView mv, HttpServletRequest request, HttpServletRe
 <div markdown="1">
 	
 ```java
-
+protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    if (pageNotFoundLogger.isWarnEnabled()) {
+        pageNotFoundLogger.warn("No mapping for " + request.getMethod() + " " + getRequestUri(request));
+    }
+    if (this.throwExceptionIfNoHandlerFound) {
+        throw new NoHandlerFoundException(request.getMethod(), getRequestUri(request),
+	new ServletServerHttpRequest(request).getHeaders());
+    } else {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+    }
+}
+	
 @Nullable
 protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
     if (this.handlerMappings != null) {
