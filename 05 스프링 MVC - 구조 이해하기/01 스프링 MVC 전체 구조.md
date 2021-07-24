@@ -65,6 +65,19 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
     mv = ha.handle(processedRequest, response, mappedHandler.getHandler());     // 3. 핸들러 어댑터 실행 -> 4. 핸들러 어댑터를 통해 핸들러 실행 -> 5. ModelAndView 반환
     processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 }
+    
+private void processDispatchResult(HttpServletRequest request, HttpServletResponse response, HandlerExecutionChain mappedHandler, ModelAndView mv, Exception exception) throws Exception {
+    render(mv, request, response);                                              // 뷰 렌더링 호출
+}
+
+protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    View view;
+    String viewName = mv.getViewName();
+    view = resolveViewName(viewName, mv.getModelInternal(), locale, request);   // 6. 뷰 리졸버를 통해서 뷰 찾기, 7. View 반환
+    view.render(mv.getModelInternal(), request, response);                      // 8. 뷰 렌더링
+}
+```
+```java
 
 @Nullable
 protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
@@ -88,16 +101,5 @@ protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletExcepti
 	    }
     }
     throw new ServletException("No adapter for handler [" + handler + "]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler");
-}
-    
-private void processDispatchResult(HttpServletRequest request, HttpServletResponse response, HandlerExecutionChain mappedHandler, ModelAndView mv, Exception exception) throws Exception {
-    render(mv, request, response);                                              // 뷰 렌더링 호출
-}
-
-protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    View view;
-    String viewName = mv.getViewName();
-    view = resolveViewName(viewName, mv.getModelInternal(), locale, request);   // 6. 뷰 리졸버를 통해서 뷰 찾기, 7. View 반환
-    view.render(mv.getModelInternal(), request, response);                      // 8. 뷰 렌더링
 }
 ```
