@@ -77,6 +77,10 @@ protected void render(ModelAndView mv, HttpServletRequest request, HttpServletRe
     view.render(mv.getModelInternal(), request, response);                      // 8. 뷰 렌더링
 }
 ```
+<details>
+<summary>getHandler() 와 getHandlerAdapter</summary>
+<div markdown="1">
+	
 ```java
 
 @Nullable
@@ -103,3 +107,5 @@ protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletExcepti
     throw new ServletException("No adapter for handler [" + handler + "]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler");
 }
 ```
+</div>
+</details>
