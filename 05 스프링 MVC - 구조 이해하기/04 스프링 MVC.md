@@ -90,8 +90,8 @@ public class TestConfiguration {
 ```
 이론상 위와 같은 방법으로도 빈 등록후 Controller로써 사용은 가능하지만      
 Best Practice는 아래와 같이 `@Controller`를 사용해서 클래스를 간편하게 만드는 것이다.   
-     
-**Best Pratice(위-MV만, 아래-파라미터+Reop로직)**        
+       
+**Best Pratice**          
 ```java
 @Controller
 public class SpringMemberFormControllerV1 {   
@@ -124,7 +124,57 @@ public class SpringMemberSaveControllerV1 {
 }
 ```
 
+참고로, 스프링이 제공하는 ModelAndView 를 통해 Model 데이터를 추가할 때는    
+addObject() 를 사용하면 된다. 이 데이터는 이후 뷰를 렌더링 할 때 사용된다.  
+```java
+mv.addObject("member", member)
+```
+    
+# 📘 스프링 MVC 컨트롤러 통합        
+RequestHandlerMapping은 `@RequestMapping`을 기준으로만 동작을 한다.           
+`@RequestMapping`은 주로 메서드 단위에 적용되는데          
+이를 활용하면 **하나의 컨트롤러 클래스에서 여러 `@RequestMapping` 메세드를 가질 수 있다.**        
 
+```java
+@Controller
+@RequestMapping("/springmvc/v2/members")
+public class SpringMemberControllerV2 {
+    private MemberRepository memberRepository = MemberRepository.getInstance();
+
+    @RequestMapping("/new-form")
+    public ModelAndView newForm() {
+        return new ModelAndView("new-form");
+    }
+
+    @RequestMapping("/save")
+    public ModelAndView save(HttpServletRequest request, HttpServletResponse
+            response) {
+        String username = request.getParameter("username");
+        int age = Integer.parseInt(request.getParameter("age"));
+        Member member = new Member(username, age);
+        memberRepository.save(member);
+        ModelAndView mav = new ModelAndView("save-result");
+        mav.addObject("member", member);
+        return mav;
+    }
+
+    @RequestMapping
+    public ModelAndView members() {
+        List<Member> members = memberRepository.findAll();
+        ModelAndView mav = new ModelAndView("members");
+        mav.addObject("members", members);
+        return mav;
+    }
+}
+```
+클래스 레벨에서도 `@RequestMapping("/springmvc/v2/members")`을 선언할 수 있는데         
+이럴 경우 **클래스 레벨 매핑 경로**와 **메서드 레벨 매핑 경로**가 조합된다.      
+
+**조합 결과**    
+* 클래스 레벨 `@RequestMapping("/springmvc/v2/members")`
+    * 메서드 레벨 `@RequestMapping("/new-form")` -> `/springmvc/v2/members/new-form` 
+    * 메서드 레벨 `@RequestMapping("/save")` -> `/springmvc/v2/members/save` 
+    * 메서드 레벨 `@RequestMapping` -> `/springmvc/v2/members`
 
 
 
