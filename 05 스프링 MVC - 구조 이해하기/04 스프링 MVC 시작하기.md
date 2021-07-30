@@ -44,38 +44,53 @@ public class SpringMemberFormControllerV1 {
 ```java
 @Component   
 @RequestMapping
-public class SpringMemberFormControllerV1 {
+public class SpringMemberFormControllerV1 {  
+
     @RequestMapping("/springmvc/v1/members/new-form")
     public ModelAndView process() {
         return new ModelAndView("new-form");
     }
+    
 }
 ```  
      
 **방법2**   
 ```java
 @RequestMapping
-public class SpringMemberFormControllerV1 {
+public class SpringMemberFormControllerV1 {  
+
     @RequestMapping("/springmvc/v1/members/new-form")
     public ModelAndView process() {
         return new ModelAndView("new-form");
     }
+    
 }
 ```
 ```java
 @Configuration
 public class TestConfiguration {
+    
     @Bean
     TestController testController() {
         return new TestController();
     }
+    
 }
 ```
 
 **Best Pratice**    
 ```java
+@Controller
+public class SpringMemberFormControllerV1 {   
 
+    @RequestMapping("/springmvc/v1/members/new-form")
+    public ModelAndView process() {
+        return new ModelAndView("new-form");
+    }
+    
+}
 ```
+물론, Best Practice는 @Controller를 사용해서 
 
 
 
