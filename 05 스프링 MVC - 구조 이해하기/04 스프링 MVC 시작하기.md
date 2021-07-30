@@ -36,9 +36,18 @@ public class SpringMemberFormControllerV1 {
 이 과정에서 더 이상 `FrontController`는 생성하지 않아도 된다.             
 
 ## 📖 RequestMappingHandlerMapping   
-       
-**RequestMappingHandlerMapping**은          
+
+```java
+    @Override
+    protected boolean isHandler(Class<?> beanType) {
+        return (AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) || 
+                AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class));
+    }
+```
+
+**RequestMappingHandlerMapping**의 `isHandler()`를 보면 재밌는점을 알 수 있는데            
 **스프링 빈 중에서 `@RequestMapping` 또는 `@Controller`가 붙은 클래스의 매핑 정보를 인식한다.**   
+
 
 **방법1**
 ```java
@@ -77,7 +86,9 @@ public class TestConfiguration {
     
 }
 ```
-
+이론상 위와 같은 방법으로도 빈 등록후 Controller로써 사용은 가능하지만      
+Best Practice는 아래와 같이 `@Controller`를 사용해서 클래스를 간편하게 만드는 것이다.   
+   
 **Best Pratice**    
 ```java
 @Controller
@@ -90,7 +101,6 @@ public class SpringMemberFormControllerV1 {
     
 }
 ```
-물론, Best Practice는 @Controller를 사용해서 
 
 
 
