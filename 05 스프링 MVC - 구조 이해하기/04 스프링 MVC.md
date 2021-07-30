@@ -1,6 +1,6 @@
 스프링 MVC 
 ==============    
-# 📗 스프링 MVC 시작하기   
+# 📗 스프링 MVC - 시작하기   
 ## 📖 @RequestMapping      
    
 * **RequestMappingHandlerMapping**        
@@ -130,7 +130,7 @@ addObject() 를 사용하면 된다. 이 데이터는 이후 뷰를 렌더링 �
 mv.addObject("member", member)
 ```
     
-# 📘 스프링 MVC 컨트롤러 통합        
+# 📘 스프링 MVC - 컨트롤러 통합        
 RequestHandlerMapping은 `@RequestMapping`을 기준으로만 동작을 한다.           
 `@RequestMapping`은 주로 메서드 단위에 적용되는데          
 이를 활용하면 **하나의 컨트롤러 클래스에서 여러 `@RequestMapping` 메세드를 가질 수 있다.**        
@@ -175,6 +175,78 @@ public class SpringMemberControllerV2 {
     * 메서드 레벨 `@RequestMapping("/new-form")` -> `/springmvc/v2/members/new-form` 
     * 메서드 레벨 `@RequestMapping("/save")` -> `/springmvc/v2/members/save` 
     * 메서드 레벨 `@RequestMapping` -> `/springmvc/v2/members`
+  
+# 📕 스프링 MVC - 실용적인 방식
+스프링 MVC는 개발자가 편리하게 개발할 수 있도록 수 많은 편의 기능을 제공한다.       
+특히 **핸들러에 정의된 메서드 파라미터를 유연하게 설정할 수 있도록 해준다.**                        
+참고로 SpringMVC의 핸들러란, `@RequestMapping`이 정의된 메서드를 의미한다.(Servlet에서는 Controller 자체)        
+
+**변경전**
+```java
+@Controller
+@RequestMapping("/springmvc/v2/members")
+public class SpringMemberControllerV2 {
+    private MemberRepository memberRepository = MemberRepository.getInstance();
+
+    @RequestMapping("/new-form")
+    public ModelAndView newForm() {
+        return new ModelAndView("new-form");
+    }
+
+    @RequestMapping("/save")
+    public ModelAndView save(HttpServletRequest request, HttpServletResponse
+            response) {
+        String username = request.getParameter("username");
+        int age = Integer.parseInt(request.getParameter("age"));
+        Member member = new Member(username, age);
+        memberRepository.save(member);
+        ModelAndView mav = new ModelAndView("save-result");
+        mav.addObject("member", member);
+        return mav;
+    }
+
+    @RequestMapping
+    public ModelAndView members() {
+        List<Member> members = memberRepository.findAll();
+        ModelAndView mav = new ModelAndView("members");
+        mav.addObject("members", members);
+        return mav;
+    }
+}
+```   
+**변경후**
+```java
+@Controller
+@RequestMapping("/springmvc/v3/members")
+public class SpringMemberControllerV3 {
+    private MemberRepository memberRepository = MemberRepository.getInstance();
+    @GetMapping("/new-form")
+    public String newForm() {
+        return "new-form";
+    }
+    
+    @PostMapping("/save")
+    public String save(
+            @RequestParam("username") String username,
+            @RequestParam("age") int age, Model model) {
+    
+       Member member = new Member(username, age);
+       memberRepository.save(member);
+       model.addAttribute("member", member);
+       return "save-result";
+    }
+    
+    @GetMapping
+    public String members(Model model) {
+        List<Member> members = memberRepository.findAll();
+        model.addAttribute("members", members);
+        return "members";
+    }
+}
+```
+
+
+
 
 
 
