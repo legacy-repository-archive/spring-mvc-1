@@ -20,12 +20,7 @@ public class SpringMemberFormControllerV1 {
     }
     
 }
-```      
-Controller 클래스에 **@Controller**를 붙이고               
-메서드/클래스 레벨에 **@RequestMapping**을 선언하면 된다.                            
-이 과정에서 `FrontController`를 더 이상 생성하지 않아도 된다.             
-
-
+```        
 * **@Controller** 
     * 스프링이 자동으로 스프링 빈으로 등록한다.     
       (내부에 @Component 애노테이션이 있어서 컴포넌트 스캔의 대상이 됨)    
@@ -36,6 +31,10 @@ Controller 클래스에 **@Controller**를 붙이고
     * 애노테이션을 기반으로 동작하기 때문에, 메서드의 이름은 임의로 지으면 된다.       
 * **ModelAndView :**         
     * 모델과 뷰 정보를 담아서 반환하면 된다.      
+
+Controller 클래스에 **@Controller**를 붙이고               
+메서드/클래스 레벨에 **@RequestMapping**을 선언하면 된다.                            
+이 과정에서 `FrontController`를 더 이상 생성하지 않아도 된다.             
 
 
 
