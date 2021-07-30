@@ -35,6 +35,48 @@ public class SpringMemberFormControllerV1 {
 **클래스에 `@Controller`** 를 붙이고 **메서드/클래스 레벨에 `@RequestMapping`** 을 선언하면 된다.                            
 이 과정에서 더 이상 `FrontController`는 생성하지 않아도 된다.             
 
+## 📖 RequestMappingHandlerMapping   
+       
+**RequestMappingHandlerMapping**은          
+**스프링 빈 중에서 `@RequestMapping` 또는 `@Controller`가 붙은 클래스의 매핑 정보를 인식한다.**   
+
+**방법1**
+```java
+@Component   
+@RequestMapping
+public class SpringMemberFormControllerV1 {
+    @RequestMapping("/springmvc/v1/members/new-form")
+    public ModelAndView process() {
+        return new ModelAndView("new-form");
+    }
+}
+```  
+     
+**방법2**   
+```java
+@RequestMapping
+public class SpringMemberFormControllerV1 {
+    @RequestMapping("/springmvc/v1/members/new-form")
+    public ModelAndView process() {
+        return new ModelAndView("new-form");
+    }
+}
+```
+```java
+@Configuration
+public class TestConfiguration {
+    @Bean
+    TestController testController() {
+        return new TestController();
+    }
+}
+```
+
+**Best Pratice**    
+```java
+
+```
+
 
 
 
