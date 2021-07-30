@@ -32,9 +32,8 @@ public class SpringMemberFormControllerV1 {
 * **ModelAndView :**         
     * 모델과 뷰 정보를 담아서 반환하면 된다.      
 
-Controller 클래스에 **@Controller**를 붙이고               
-메서드/클래스 레벨에 **@RequestMapping**을 선언하면 된다.                            
-이 과정에서 `FrontController`를 더 이상 생성하지 않아도 된다.             
+**클래스에 `@Controller`** 를 붙이고 **메서드/클래스 레벨에 `@RequestMapping`** 을 선언하면 된다.                            
+이 과정에서 더 이상 `FrontController`는 생성하지 않아도 된다.             
 
 
 
