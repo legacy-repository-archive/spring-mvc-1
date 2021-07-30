@@ -1,5 +1,7 @@
-# 스프링 MVC 시작하기   
-## @RequestMapping      
+스프링 MVC 
+==============    
+# 📗 스프링 MVC 시작하기   
+## 📖 @RequestMapping      
    
 * **RequestMappingHandlerMapping**        
 * **RequestMappingHandlerAdapter**        
@@ -88,8 +90,8 @@ public class TestConfiguration {
 ```
 이론상 위와 같은 방법으로도 빈 등록후 Controller로써 사용은 가능하지만      
 Best Practice는 아래와 같이 `@Controller`를 사용해서 클래스를 간편하게 만드는 것이다.   
-   
-**Best Pratice**    
+     
+**Best Pratice(위-MV만, 아래-파라미터+Reop로직)**        
 ```java
 @Controller
 public class SpringMemberFormControllerV1 {   
@@ -100,8 +102,27 @@ public class SpringMemberFormControllerV1 {
     }
     
 }
+```       
+```java
+@Controller
+public class SpringMemberSaveControllerV1 {
+    
+    private MemberRepository memberRepository = MemberRepository.getInstance();
+    
+    @RequestMapping("/springmvc/v1/members/save")
+    public ModelAndView process(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        int age = Integer.parseInt(request.getParameter("age"));
+        Member member = new Member(username, age);
+        
+        memberRepository.save(member);
+        
+        ModelAndView mv = new ModelAndView("save-result");
+        mv.addObject("member", member);
+        return mv;
+    }
+}
 ```
-
 
 
 
