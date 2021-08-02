@@ -26,9 +26,8 @@ content-type: application/x-www-form-urlencoded
 username=hello&age=20
 ```
 `GET 쿼리 파리미터` 전송 방식이든, `POST HTML Form` 전송 방식이든 둘다 형식이 같으므로 구분없이 조회할 수 있다.     
-이것을 간단히 요청 파라미터(request parameter) 조회라 한다.         
-지금부터 스프링으로 요청 파라미터를 조회하는 방법을 단계적으로 알아보자.            
-    
+**이것을 간단히 요청 파라미터(request parameter) 조회라 한다.**             
+   
 ```java
 @Slf4j
 @Controller
@@ -45,11 +44,6 @@ public class RequestParamController {
     }
 }
 ```
-   
-Post Form 페이지 생성  
-먼저 테스트용 HTML Form을 만들어야 한다.
-리소스는 /resources/static 아래에 두면 스프링 부트가 자동으로 인식한다.
-        
 ```html
 <!DOCTYPE html>
 <html>
