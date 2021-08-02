@@ -51,6 +51,9 @@ public class RequestParamController {
     }
 }
 ```
+위 코드를 테스트하기 위한 html 을 작성해보면 아래와 같다.     
+참고로 정적 리소스는 `/resources/static` 아래에 두면 스프링 부트가 자동으로 인식한다.      
+   
 ```html
 <!DOCTYPE html>
 <html>
