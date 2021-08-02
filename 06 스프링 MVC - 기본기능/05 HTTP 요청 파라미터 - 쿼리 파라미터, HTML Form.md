@@ -22,9 +22,10 @@ HTTP 요청 데이터 조회 - 개요
 
 * GET 쿼리 파리미터 전송 방식
 * POST HTML Form 전송 방식
-    
-    
-    
+             
+파라미터 바인딩의 대상은 `Get`/`POST form` 두 요청에 한해서고      
+만약, **Post Json 방식으로 요청을 보낸다면 파라미터 바인딩의 대상이 되지 않는다.**        
+   
 ```http
 POST /request-param ...
 content-type: application/x-www-form-urlencoded
