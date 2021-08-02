@@ -17,69 +17,64 @@ HTTP 요청 데이터 조회 - 개요
 * 데이터 형식은 주로 JSON 사용
 * `POST`, `PUT`, `PATCH`   
 
-
-요청 파라미터 - 쿼리 파라미터, HTML Form
-HttpServletRequest 의 request.getParameter() 를 사용하면 다음 두가지 요청 파라미터를 조회할
-수 있다.
+  
+**요청 파라미터 - 쿼리 파라미터, HTML Form**    
+HttpServletRequest 의 request.getParameter() 를 사용하면 다음 두가지 요청 파라미터를 조회할 수 있다.
 GET, 쿼리 파라미터 전송
 예시
 http://localhost:8080/request-param?username=hello&age=20
 POST, HTML Form 전송
 예시
+```http
 POST /request-param ...
 content-type: application/x-www-form-urlencoded
 username=hello&age=20
-GET 쿼리 파리미터 전송 방식이든, POST HTML Form 전송 방식이든 둘다 형식이 같으므로 구분없이
-조회할 수 있다.
+```
+GET 쿼리 파리미터 전송 방식이든, POST HTML Form 전송 방식이든 둘다 형식이 같으므로 구분없이 조회할 수 있다.
 이것을 간단히 요청 파라미터(request parameter) 조회라 한다.
 지금부터 스프링으로 요청 파라미터를 조회하는 방법을 단계적으로 알아보자.
-RequestParamController
-package hello.springmvc.basic.request;
-import hello.springmvc.basic.HelloData;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Map;
+
+```java
 @Slf4j
 @Controller
 public class RequestParamController {
- /**
- * 반환 타입이 없으면서 이렇게 응답에 값을 직접 집어넣으면, view 조회X
- */
- @RequestMapping("/request-param-v1")
- public void requestParamV1(HttpServletRequest request, HttpServletResponse
-response) throws IOException {
- String username = request.getParameter("username");
- int age = Integer.parseInt(request.getParameter("age"));
- log.info("username={}, age={}", username, age);
- response.getWriter().write("ok");
- }
+    /**
+    * 반환 타입이 없으면서 이렇게 응답에 값을 직접 집어넣으면, view 조회X
+    */
+    @RequestMapping("/request-param-v1")
+    public void requestParamV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String username = request.getParameter("username");
+        int age = Integer.parseInt(request.getParameter("age"));
+        log.info("username={}, age={}", username, age);
+        response.getWriter().write("ok");
+    }
 }
+```
+
 request.getParameter()
 여기서는 단순히 HttpServletRequest가 제공하는 방식으로 요청 파라미터를 조회했다.
-GET 실행
-http://localhost:8080/request-param-v1?username=hello&age=20
-Post Form 페이지 생성
+
+Post Form 페이지 생성  
 먼저 테스트용 HTML Form을 만들어야 한다.
 리소스는 /resources/static 아래에 두면 스프링 부트가 자동으로 인식한다.
-main/resources/static/basic/hello-form.html
+        
+```html
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
- <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
- <form action="/request-param-v1" method="post">
- username: <input type="text" name="username" />
- age: <input type="text" name="age" />
- <button type="submit">전송</button>
- </form>
+    <form action="/request-param-v1" method="post">
+        username: <input type="text" name="username" />
+        age: <input type="text" name="age" />
+        <button type="submit">전송</button>
+    </form>
 </body>
 </html>
+```
+
 Post Form 실행
 http://localhost:8080/basic/hello-form.html
 > 참고
