@@ -28,21 +28,35 @@ public class RequestHeaderController {
         return "ok";
     }
 }
-```
+```  
+**HttpServletRequest**   
+Servlet에서 제공하는 HttpServletRequest 객체   
 
-* HttpServletRequest
-* HttpServletResponse
-* HttpMethod : HTTP 메서드를 조회한다. org.springframework.http.HttpMethod
-* Locale : Locale 정보를 조회한다.
-* @RequestHeader MultiValueMap<String, String> headerMap 모든 HTTP 헤더를 MultiValueMap 형식으로 조회한다.
-* @RequestHeader("host") String host 특정 HTTP 헤더를 조회한다.
-    * **속성**
-        * 필수 값 여부: required
-        * 기본 값 속성: defaultValue
-* @CookieValue(value = "myCookie", required = false) String cookie 특정 쿠키를 조회한다.
-    * **속성**
-        * 필수 값 여부: required
-        * 기본 값: defaultValue
+**HttpServletResponse**   
+Servlet에서 제공하는 HttpServletResponse 객체   
+
+**HttpMethod**    
+`org.springframework.http.HttpMethod`   
+HTTP 메서드(GET/POST 등등)를 조회할 때 사용하는 객체   
+   
+**Locale**  
+Locale(지역) 정보를 조회하고 주로 국제화할 때 사용한다.        
+   
+**@RequestHeader MultiValueMap<String, String> headerMap**
+모든 HTTP 헤더를 Key와 다중 Value인, MultiValueMap 형식으로 조회한다.         
+
+**@RequestHeader("host") String host**   
+특정 HTTP 헤더를 조회한다.
+* **속성**
+ * 필수 값 여부: required
+ * 기본 값 속성: defaultValue
+
+**@CookieValue(value = "myCookie", required = false) String cookie**       
+특정 쿠키를 조회한다.  
+* **속성**
+    * 필수 값 여부: required
+    * 기본 값: defaultValue
+
 * MultiValueMap
 MAP과 유사한데, 하나의 키에 여러 값을 받을 수 있다.
 HTTP header, HTTP 쿼리 파라미터와 같이 하나의 키에 여러 값을 받을 때 사용한다.
