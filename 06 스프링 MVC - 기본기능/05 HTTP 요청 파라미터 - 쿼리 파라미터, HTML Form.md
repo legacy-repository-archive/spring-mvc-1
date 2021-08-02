@@ -19,14 +19,20 @@ HTTP 요청 데이터 조회 - 개요
   
 **요청 파라미터 - 쿼리 파라미터, HTML Form**    
 `HttpServletRequest` 의 `request.getParameter()`를 사용하면 다음 두가지 요청 파라미터를 조회할 수 있다.
-   
+
+* GET 쿼리 파리미터 전송 방식
+* POST HTML Form 전송 방식
+    
+    
+    
 ```http
 POST /request-param ...
 content-type: application/x-www-form-urlencoded
 username=hello&age=20
-```
-`GET 쿼리 파리미터` 전송 방식이든, `POST HTML Form` 전송 방식이든 둘다 형식이 같으므로 구분없이 조회할 수 있다.     
-**이것을 간단히 요청 파라미터(request parameter) 조회라 한다.**             
+```  
+`GET 쿼리 파리미터` 전송 방식이든, `POST HTML Form` 전송 방식이든         
+사실상 둘다 형식이 같으므로 구분없이 조회할 수 있다.       
+**이것을 간단히 요청 파라미터(request parameter) 조회라 한다.**                
    
 ```java
 @Slf4j
@@ -64,3 +70,4 @@ public class RequestParamController {
 **참고**   
 Jar 를 사용하면 webapp 경로를 사용할 수 없다.      
 이제부터 정적 리소스도 클래스 경로에 함께 포함해야 한다.    
+
