@@ -87,7 +87,7 @@ HttpEntity 를 상속받은 다음 객체들도 같은 기능을 제공한다.
 스프링MVC 내부에서 HTTP 메시지 바디를 읽어서 문자나 객체로 변환해서 전달해주는데,       
 이때 HTTP 메시지 컨버터( HttpMessageConverter )라는 기능을 사용한다.       
   
-## ✔ @RequestBody 
+## @RequestBody ✔  
 ```java
 @ResponseBody
 @PostMapping("/request-body-string-v4")
