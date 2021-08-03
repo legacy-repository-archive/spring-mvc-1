@@ -1,17 +1,18 @@
 HTTP 요청 메시지 - 단순 텍스트
 =================================   
-HTTP message body에 데이터를 직접 담아서 요청          
-HTTP API에서 데이터 형식은 `JSON`, `XML`, `TEXT`이 있으며 주로 JSON 사용한다.           
-HTTP message body에 데이터를 담는 HTTP 메서드는 `POST`, `PUT`, `PATCH` 이다.(GET도 가능하지만 거의 사용 X)       
+> HTTP message body에 데이터를 직접 담아서 요청          
+  
+HTTP API에서 **데이터 형식은 `JSON`, `XML`, `TEXT`이 있으며 주로 JSON 사용한다.**             
+HTTP message body에 데이터를 담는 **HTTP 메서드는 `POST`, `PUT`, `PATCH` 이다.(GET도 가능하지만 거의 사용 X)**         
     
 **주의 사항**    
-요청 파라미터와 다르게,      
+요청 파라미터와 다르게,    
 **HTTP 메시지 바디를 통해 데이터가 직접 데이터가 넘어오는 경우는 @RequestParam , @ModelAttribute 를 사용할 수 없다.**       
 (물론 HTML Form 형식으로 전달되는 경우는 요청 파라미터로 인정된다.(Post-HTML/FORM))    
 
-## 기본 HttpServletRequest
-   
-먼저 가장 단순한 텍스트 메시지를 HTTP 메시지 바디에 담아서 전송하고, 읽어보자.   
+## 기본 HttpServletRequest      
+> 먼저 가장 단순한 텍스트 메시지를 HTTP 메시지 바디에 담아서 전송하고, 읽어보자.     
+     
 HttpServletRequest의 `getInputStream()`를 이용하면 InputStream객체를 얻을 수 있다.   
 **HTTP 메시지 바디의 데이터를 `InputStream` 을 사용해서 직접 읽을 수 있다.**          
      
@@ -56,36 +57,36 @@ public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
     return new HttpEntity<>("ok");
 }
 ```
+스프링 MVC는 다음 파라미터를 지원한다.   
 
- * HttpEntity: HTTP header, body 정보를 편라하게 조회
- * - 메시지 바디 정보를 직접 조회(@RequestParam X, @ModelAttribute X)
- * - HttpMessageConverter 사용 -> StringHttpMessageConverter 적용
- *
- * 응답에서도 HttpEntity 사용 가능
- * - 메시지 바디 정보 직접 반환(view 조회X)
- * - HttpMessageConverter 사용 -> StringHttpMessageConverter 적용
- 
- 
-스프링 MVC는 다음 파라미터를 지원한다.
-HttpEntity: HTTP header, body 정보를 편리하게 조회
-메시지 바디 정보를 직접 조회
-요청 파라미터를 조회하는 기능과 관계 없음 @RequestParam X, @ModelAttribute X
-HttpEntity는 응답에도 사용 가능
-메시지 바디 정보 직접 반환
-헤더 정보 포함 가능
-view 조회X
-HttpEntity 를 상속받은 다음 객체들도 같은 기능을 제공한다.
-RequestEntity
-HttpMethod, url 정보가 추가, 요청에서 사용
-ResponseEntity
-HTTP 상태 코드 설정 가능, 응답에서 사용
-return new ResponseEntity<String>("Hello World", responseHeaders,
-HttpStatus.CREATED)
-> 참고
-> 스프링MVC 내부에서 HTTP 메시지 바디를 읽어서 문자나 객체로 변환해서 전달해주는데, 이때 HTTP
-메시지 컨버터( HttpMessageConverter )라는 기능을 사용한다. 이것은 조금 뒤에 HTTP 메시지
-컨버터에서 자세히 설명한다.
+**HttpEntity: HTTP header, body 정보를 편리하게 조회**
+* 메시지 바디 정보를 직접 조회
+  * 요청 파라미터를 조회하는 기능과 관계 없음
+  * `@RequestParam` ❌, `@ModelAttribute` ❌    
+  * 헤더 정보 포함 가능     
+* 메시지 바디 정보 직접 반환
+  * HttpEntity는 응답에서도 사용 가능 
+  * `view 렌더링` ❌              
+* HttpMessageConverter 사용 -> StringHttpMessageConverter 적용 
 
+**HttpEntity를 상속받은 RequestEntity, ResponseEntity**     
+HttpEntity 를 상속받은 다음 객체들도 같은 기능을 제공한다.  
+          
+* **RequestEntity**      
+    HttpMethod, url 정보가 추가, 요청에서 사용   
+    ```java
+    public HttpEntity<String> requestBodyStringV3(RequestEntity<String> requestEntity) {
+    ```  
+* **ResponseEntity**     
+    HTTP 상태 코드 설정 가능, 응답에서 사용   
+    ```java
+    return new ResponseEntity<String>("Hello World", responseHeaders, HttpStatus.CREATED)   
+    ```
+    
+**참고**   
+스프링MVC 내부에서 HTTP 메시지 바디를 읽어서 문자나 객체로 변환해서 전달해주는데,       
+이때 HTTP 메시지 컨버터( HttpMessageConverter )라는 기능을 사용한다.       
+  
 ## @RequestBody - requestBodyStringV4
 ```java
 @ResponseBody
