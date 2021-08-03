@@ -1,36 +1,42 @@
 HTTP 요청 메시지 - 단순 텍스트
-서블릿에서 학습한 내용을 떠올려보자.
-HTTP message body에 데이터를 직접 담아서 요청
-HTTP API에서 주로 사용, JSON, XML, TEXT
-데이터 형식은 주로 JSON 사용
-POST, PUT, PATCH
-요청 파라미터와 다르게, HTTP 메시지 바디를 통해 데이터가 직접 데이터가 넘어오는 경우는
-@RequestParam , @ModelAttribute 를 사용할 수 없다. (물론 HTML Form 형식으로 전달되는 경우는
-요청 파라미터로 인정된다.)
-먼저 가장 단순한 텍스트 메시지를 HTTP 메시지 바디에 담아서 전송하고, 읽어보자.
-HTTP 메시지 바디의 데이터를 InputStream 을 사용해서 직접 읽을 수 있다.
-RequestBodyStringController
+=================================   
+HTTP message body에 데이터를 직접 담아서 요청          
+HTTP API에서 데이터 형식은 `JSON`, `XML`, `TEXT`이 있으며 주로 JSON 사용한다.           
+HTTP message body에 데이터를 담는 HTTP 메서드는 `POST`, `PUT`, `PATCH` 이다.(GET도 가능하지만 거의 사용 X)       
+    
+**주의 사항**    
+요청 파라미터와 다르게,      
+**HTTP 메시지 바디를 통해 데이터가 직접 데이터가 넘어오는 경우는 @RequestParam , @ModelAttribute 를 사용할 수 없다.**       
+(물론 HTML Form 형식으로 전달되는 경우는 요청 파라미터로 인정된다.(Post-HTML/FORM))    
+
+## 기본 HttpServletRequest
+   
+먼저 가장 단순한 텍스트 메시지를 HTTP 메시지 바디에 담아서 전송하고, 읽어보자.   
+HttpServletRequest의 `getInputStream()`를 이용하면 InputStream객체를 얻을 수 있다.   
+**HTTP 메시지 바디의 데이터를 `InputStream` 을 사용해서 직접 읽을 수 있다.**          
+     
+```java
 @Slf4j
 @Controller
 public class RequestBodyStringController {
- @PostMapping("/request-body-string-v1")
- public void requestBodyString(HttpServletRequest request,
-HttpServletResponse response) throws IOException {
- ServletInputStream inputStream = request.getInputStream();
- String messageBody = StreamUtils.copyToString(inputStream,
-StandardCharsets.UTF_8);
- log.info("messageBody={}", messageBody);
- response.getWriter().write("ok");
- }
+
+     @PostMapping("/request-body-string-v1")
+     public void requestBodyString(HttpServletRequest request, HttpServletResponse response) throws IOException {
+         ServletInputStream inputStream = request.getInputStream();
+         String messageBody = StreamUtils.copyToString(inputStream,
+         StandardCharsets.UTF_8);
+         log.info("messageBody={}", messageBody);
+         response.getWriter().write("ok");
+     }
 }
-Postman을 사용해서 테스트 해보자.
-POST http://localhost:8080/request-body-string-v1
-Body row, Text 선택
-Input, Output 스트림, Reader - requestBodyStringV2
+```  
+  
+## Input, Output 스트림, Reader - requestBodyStringV2
 /**
  * InputStream(Reader): HTTP 요청 메시지 바디의 내용을 직접 조회
  * OutputStream(Writer): HTTP 응답 메시지의 바디에 직접 결과 출력
  */
+```java
 @PostMapping("/request-body-string-v2")
 public void requestBodyStringV2(InputStream inputStream, Writer responseWriter)
 throws IOException {
@@ -39,6 +45,7 @@ StandardCharsets.UTF_8);
  log.info("messageBody={}", messageBody);
  responseWriter.write("ok");
 }
+```
 스프링 MVC는 다음 파라미터를 지원한다.
 InputStream(Reader): HTTP 요청 메시지 바디의 내용을 직접 조회
 OutputStream(Writer): HTTP 응답 메시지의 바디에 직접 결과 출력
