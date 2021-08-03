@@ -106,17 +106,15 @@ public HelloData requestBodyJsonV5(@RequestBody HelloData data) {
     return data;
 }
 ```      
-위 코드는 객체를 바로 반환하는 형태로 동작하고 있다.   
-  
+위 코드는 사용자 정의 객체를 반환하는 형태로 구현되어 있다.    
+     
 **@ResponseBody**     
 응답의 경우에도 @ResponseBody 를 사용하면 해당 객체를 HTTP 메시지 바디에 직접 넣어줄 수 있다.    
 물론 이 경우에도 HttpEntity 를 사용해도 된다.   
    
 **@RequestBody 요청**
-* @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
-* HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (contenttype: application/json)
+* `JSON 요청` -> `HTTP 메시지` -> `컨버터 객체`
     
-**@ResponseBody 응답**      
-* - 메시지 바디 정보 직접 반환(view 조회X)   
-* - HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter 적용    
+**@ResponseBody 응답**
+* `객체` -> `HTTP 메시지 컨버터` -> `JSON 응답`
  
