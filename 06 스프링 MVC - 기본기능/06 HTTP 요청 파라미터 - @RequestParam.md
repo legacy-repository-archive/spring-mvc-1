@@ -1,8 +1,9 @@
 HTTP 요청 파라미터 - @RequestParam
 ==================================
 `@RequestParam`을 사용하면 요청 파라미터를 매우 편리하게 사용할 수 있다.         
+`@RequestParam(value="")`에 파라미터 이름(key)을 넣으면 해당 데이터를 바인딩 할 수 있다.     
    
-**requestParamV2**    
+## 일반적인 사용법 
 ```java 
 @ResponseBody
 @RequestMapping("/request-param-v2")
@@ -13,26 +14,20 @@ public String requestParamV2(@RequestParam("username") String memberName, @Reque
 ```
 * @RequestParam 사용 : 파라미터 이름으로 바인딩        
 * @ResponseBody 추가 : View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력         
+  
+## 동일 이름 생략 전략  
 
-
-@RequestParam의 name(value) 속성이 파라미터 이름으로 사용
-@RequestParam("username") String memberName
- request.getParameter("username")
-requestParamV3
-/**
- * @RequestParam 사용
- * HTTP 파라미터 이름이 변수 이름과 같으면 @RequestParam(name="xx") 생략 가능
- */
+```java
 @ResponseBody
 @RequestMapping("/request-param-v3")
-public String requestParamV3(
- @RequestParam String username,
- @RequestParam int age) {
- log.info("username={}, age={}", username, age);
- return "ok";
+public String requestParamV3(@RequestParam String username, @RequestParam int age) {
+    log.info("username={}, age={}", username, age);
+    return "ok";
 }
-HTTP 파라미터 이름이 변수 이름과 같으면 @RequestParam(name="xx") 생략 가능
-requestParamV4
+```
+HTTP 파라미터 이름이 변수 이름과 같으면 @RequestParam(name="xx") 생략 가능하다.   
+
+## requestParamV4
 /**
  * @RequestParam 사용
  * String, int 등의 단순 타입이면 @RequestParam 도 생략 가능
