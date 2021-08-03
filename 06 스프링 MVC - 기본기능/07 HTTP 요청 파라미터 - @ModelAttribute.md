@@ -29,32 +29,31 @@ public String modelAttributeV1(@ModelAttribute HelloData helloData) {
    
 **동작 과정**
 1. 요청 파라미터의 이름으로 HelloData 객체의 프로퍼티를 찾는다.   
-2. 해당 프로퍼티의 생성자 or setter를 호출해서 파라미터의 값을 입력(바인딩) 한다.
-        
+2. 해당 프로퍼티의 `생성자` or `setter`를 호출해서 파라미터의 값을 입력(바인딩) 한다.
+           
 **바인딩 오류**   
-age=abc 처럼 숫자가 들어가야 할 곳에 문자를 넣으면 BindException 이 발생한다.      
+`age=abc` 처럼 숫자가 들어가야 할 곳에 문자를 넣으면 `BindException` 이 발생한다.      
 이런 바인딩 오류를 처리하는 방법은 검증 부분에서 다룬다.     
-      
+        
 **참고**      
 `model.addAttribute(helloData)` 코드도 함께 자동 적용되어 자동으로 모델을 등록한다.          
    
 ## @ModelAttribute 생략 - modelAttributeV2
-/**
- * @ModelAttribute 생략 가능
- * String, int 같은 단순 타입 = @RequestParam
- * argument resolver 로 지정해둔 타입 외 = @ModelAttribute
- */
+```java
 @ResponseBody
 @RequestMapping("/model-attribute-v2")
 public String modelAttributeV2(HelloData helloData) {
- log.info("username={}, age={}", helloData.getUsername(),
-helloData.getAge());
- return "ok";
+    log.info("username={}, age={}", helloData.getUsername(),
+    helloData.getAge());
+    return "ok";
 }
-@ModelAttribute 는 생략할 수 있다.
-그런데 @RequestParam 도 생략할 수 있으니 혼란이 발생할 수 있다.
-스프링은 해당 생략시 다음과 같은 규칙을 적용한다.
-String , int , Integer 같은 단순 타입 = @RequestParam
-나머지 = @ModelAttribute (argument resolver 로 지정해둔 타입 외)
-> 참고
-> argument resolver는 뒤에서 학습한다.
+```
+`@ModelAttribute`는 생략할 수 있다.
+  
+그런데 @RequestParam 도 생략할 수 있으니 혼란이 발생할 수 있기에    
+스프링은 어노테이션 생략시 다음과 같은 규칙을 적용한다.
+    
+* **@RequestParam :** String, int, Integer와 같은 문자열, 프리미티브, 래퍼 클래스            
+* **@ModelAttribute :** 나머지(argument resolver 로 지정해둔 타입 외의 레퍼 클래스)  
+
+ 
