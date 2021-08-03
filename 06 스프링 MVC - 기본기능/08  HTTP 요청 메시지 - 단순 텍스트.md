@@ -10,7 +10,7 @@ HTTP message body에 데이터를 담는 **HTTP 메서드는 `POST`, `PUT`, `PAT
 **HTTP 메시지 바디를 통해 데이터가 직접 데이터가 넘어오는 경우는 @RequestParam , @ModelAttribute 를 사용할 수 없다.**       
 (물론 HTML Form 형식으로 전달되는 경우는 요청 파라미터로 인정된다.(Post-HTML/FORM))    
 
-## 기본 HttpServletRequest      
+# 기본 HttpServletRequest      
 > 먼저 가장 단순한 텍스트 메시지를 HTTP 메시지 바디에 담아서 전송하고, 읽어보자.     
      
 HttpServletRequest의 `getInputStream()`를 이용하면 InputStream객체를 얻을 수 있다.   
@@ -32,7 +32,7 @@ public class RequestBodyStringController {
 }
 ```  
   
-## Input, Output 스트림, Reader 
+# Input, Output 스트림, Reader 
    
 ```java
 @PostMapping("/request-body-string-v2")
@@ -48,7 +48,7 @@ public void requestBodyStringV2(InputStream inputStream, Writer responseWriter) 
 * **InputStream(Reader):** HTTP 요청 메시지 바디의 내용을 직접 조회      
 * **OutputStream(Writer):** HTTP 응답 메시지의 바디에 직접 결과 출력     
    
-## HttpEntity
+# HttpEntity
 ```java 
 @PostMapping("/request-body-string-v3")
 public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
@@ -87,7 +87,7 @@ HttpEntity 를 상속받은 다음 객체들도 같은 기능을 제공한다.
 스프링MVC 내부에서 HTTP 메시지 바디를 읽어서 문자나 객체로 변환해서 전달해주는데,       
 이때 HTTP 메시지 컨버터( HttpMessageConverter )라는 기능을 사용한다.       
   
-## @RequestBody ✔  
+# @RequestBody ✔  
 ```java
 @ResponseBody
 @PostMapping("/request-body-string-v4")
