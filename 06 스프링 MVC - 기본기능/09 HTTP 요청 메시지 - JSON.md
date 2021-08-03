@@ -59,35 +59,32 @@ public String requestBodyJsonV3(@RequestBody HelloData data) {
     return "ok";
 }
 ```
-/**
- * @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
- * HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (contenttype: application/json)
- *
- */
+  
+**@RequestBody**           
+* @RequestBody 에 직접 만든 객체를 지정할 수도 있다.(getter/setter 역직렬화로 동작 -> 문자열에서 객체 생성하는 작업)               
+* @RequestBody는 생략 불가능하다. `@ModelAttribute`가 적용되어 버리기 때문이다.           
+* HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (contenttype: application/json)        
+   
+HttpEntity, @RequestBody 를 사용하면    
+`HTTP 메시지 컨버터`가 **HTTP 메시지 바디의 내용을 우리가 원하는 문자나 객체 등으로 변환해준다.**      
+`HTTP 메시지 컨버터`는 **문자열 뿐만 아니라 JSON도 객체로 변환해준다.(역직렬화 방식으로)**      
+`역직렬화 방식`은 **기본 생성자랑 getter/setter 둘 중 하나가 필수적으로 존재해야한다.**    
+   
+**@RequestBody는 생략 불가능**         
+파라미터에 `@ModelAttribute` , `@RequestParam` 생략시 다음과 같은 규칙을 적용한다.   
+   
+* @RequestParam : String , int , Integer 같은 단순 타입
+* @ModelAttribute : 나머지 (argument resolver 로 지정해둔 타입 외)
 
-
-
-@RequestBody 객체 파라미터
-@RequestBody HelloData data
-@RequestBody 에 직접 만든 객체를 지정할 수 있다.
-HttpEntity , @RequestBody 를 사용하면 HTTP 메시지 컨버터가 HTTP 메시지 바디의 내용을 우리가
-원하는 문자나 객체 등으로 변환해준다.
-HTTP 메시지 컨버터는 문자 뿐만 아니라 JSON도 객체로 변환해주는데, 우리가 방금 V2에서 했던 작업을
-대신 처리해준다.
-자세한 내용은 뒤에 HTTP 메시지 컨버터에서 다룬다.
-@RequestBody는 생략 불가능
-@ModelAttribute 에서 학습한 내용을 떠올려보자.
-스프링은 @ModelAttribute , @RequestParam 해당 생략시 다음과 같은 규칙을 적용한다.
-String , int , Integer 같은 단순 타입 = @RequestParam
-나머지 = @ModelAttribute (argument resolver 로 지정해둔 타입 외)
-따라서 이 경우 HelloData에 @RequestBody 를 생략하면 @ModelAttribute 가 적용되어버린다.
-HelloData data @ModelAttribute HelloData data
 따라서 생략하면 HTTP 메시지 바디가 아니라 요청 파라미터를 처리하게 된다.
-> 주의
+즉, `@RequestBody`를 생략하면 `@ModelAttribute`나 `@RequestParam`가 적용되어버린다.
+
+**주의**   
 > HTTP 요청시에 content-type이 application/json인지 꼭! 확인해야 한다. 그래야 JSON을 처리할 수
 있는 HTTP 메시지 컨버터가 실행된다.
 물론 앞서 배운 것과 같이 HttpEntity를 사용해도 된다.
-requestBodyJsonV4 - HttpEntity
+
+# requestBodyJsonV4 - HttpEntity
 @ResponseBody
 @PostMapping("/request-body-json-v4")
 public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) {
