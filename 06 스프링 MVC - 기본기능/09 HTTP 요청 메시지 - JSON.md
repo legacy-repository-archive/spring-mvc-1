@@ -84,7 +84,7 @@ HttpEntity, @RequestBody 를 사용하면
 그래야 JSON을 처리할 수 있는 HTTP 메시지 컨버터가 실행된다.            
 물론 앞서 배운 것과 같이 HttpEntity를 사용해도 된다.            
   
-# requestBodyJsonV4 - HttpEntity
+# HttpEntity
 ```java
 @ResponseBody
 @PostMapping("/request-body-json-v4")
@@ -97,16 +97,7 @@ public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) {
 `HttpEntity`를 이용해서 요청 파라미터를 처리할 수 있다.        
 이전에 언급했듯이 Http 바디는 물론 헤더에 관한 처리도 할 수 있다.      
    
-# requestBodyJsonV5
-/**
- * @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
- * HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (contenttype: application/json)
- *
- * @ResponseBody 적용
- * - 메시지 바디 정보 직접 반환(view 조회X)
- * - HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter 적용
-(Accept: application/json)
- */
+# @RequestBody  
 ```java
 @ResponseBody
 @PostMapping("/request-body-json-v5")
@@ -114,11 +105,18 @@ public HelloData requestBodyJsonV5(@RequestBody HelloData data) {
     log.info("username={}, age={}", data.getUsername(), data.getAge());
     return data;
 }
-```   
-@ResponseBody
-응답의 경우에도 @ResponseBody 를 사용하면 해당 객체를 HTTP 메시지 바디에 직접 넣어줄 수 있다.
-물론 이 경우에도 HttpEntity 를 사용해도 된다.
-@RequestBody 요청
-JSON 요청 HTTP 메시지 컨버터 객체
-@ResponseBody 응답
-객체 HTTP 메시지 컨버터 JSON 응답
+```      
+위 코드는 객체를 바로 반환하는 형태로 동작하고 있다.   
+  
+**@ResponseBody**     
+응답의 경우에도 @ResponseBody 를 사용하면 해당 객체를 HTTP 메시지 바디에 직접 넣어줄 수 있다.    
+물론 이 경우에도 HttpEntity 를 사용해도 된다.   
+   
+**@RequestBody 요청**
+* @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
+* HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (contenttype: application/json)
+    
+**@ResponseBody 응답**      
+* - 메시지 바디 정보 직접 반환(view 조회X)   
+* - HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter 적용    
+ 
