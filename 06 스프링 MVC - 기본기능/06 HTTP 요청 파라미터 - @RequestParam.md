@@ -1,24 +1,20 @@
 HTTP 요청 파라미터 - @RequestParam
 ==================================
-
-스프링이 제공하는 @RequestParam 을 사용하면 요청 파라미터를 매우 편리하게 사용할 수 있다.
-requestParamV2
-/**
- * @RequestParam 사용
- * - 파라미터 이름으로 바인딩
- * @ResponseBody 추가
- * - View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력
- */
+`@RequestParam`을 사용하면 요청 파라미터를 매우 편리하게 사용할 수 있다.         
+   
+**requestParamV2**    
+```java 
 @ResponseBody
 @RequestMapping("/request-param-v2")
-public String requestParamV2(
- @RequestParam("username") String memberName,
- @RequestParam("age") int memberAge) {
- log.info("username={}, age={}", memberName, memberAge);
- return "ok";
+public String requestParamV2(@RequestParam("username") String memberName, @RequestParam("age") int memberAge) {
+    log.info("username={}, age={}", memberName, memberAge);
+    return "ok";
 }
-@RequestParam : 파라미터 이름으로 바인딩
-@ResponseBody : View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력
+```
+* @RequestParam 사용 : 파라미터 이름으로 바인딩        
+* @ResponseBody 추가 : View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력         
+
+
 @RequestParam의 name(value) 속성이 파라미터 이름으로 사용
 @RequestParam("username") String memberName
  request.getParameter("username")
