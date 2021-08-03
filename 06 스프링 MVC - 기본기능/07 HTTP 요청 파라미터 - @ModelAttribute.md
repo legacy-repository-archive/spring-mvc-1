@@ -32,12 +32,11 @@ public String modelAttributeV1(@ModelAttribute HelloData helloData) {
 2. 해당 프로퍼티의 생성자 or setter를 호출해서 파라미터의 값을 입력(바인딩) 한다.
         
 **바인딩 오류**   
-age=abc 처럼 숫자가 들어가야 할 곳에 문자를 넣으면 BindException 이 발생한다.    
-이런 바인딩 오류를 처리하는 방법은 검증 부분에서 다룬다.
-   
-**참고**   
-`model.addAttribute(helloData)` 코드도 함께 자동 적용된다.        
-즉, 자동으로 모델을 등록한다.      
+age=abc 처럼 숫자가 들어가야 할 곳에 문자를 넣으면 BindException 이 발생한다.      
+이런 바인딩 오류를 처리하는 방법은 검증 부분에서 다룬다.     
+      
+**참고**      
+`model.addAttribute(helloData)` 코드도 함께 자동 적용되어 자동으로 모델을 등록한다.          
    
 ## @ModelAttribute 생략 - modelAttributeV2
 /**
