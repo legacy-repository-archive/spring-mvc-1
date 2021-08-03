@@ -1,50 +1,36 @@
 HTTP 요청 메시지 - JSON 
 ========================   
+```json
+{"username":"hello", "age":20}
+content-type: application/json
+```
 
-이번에는 HTTP API에서 주로 사용하는 JSON 데이터 형식을 조회해보자.
-기존 서블릿에서 사용했던 방식과 비슷하게 시작해보자.
-RequestBodyJsonController
-package hello.springmvc.basic.request;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import hello.springmvc.basic.HelloData;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-/**
- * {"username":"hello", "age":20}
- * content-type: application/json
- */
+# 기본 
+> 기존 서블릿에서 사용했던 방식과 비슷하게 시작해보자.
+
+```java
 @Slf4j
 @Controller
 public class RequestBodyJsonController {
- private ObjectMapper objectMapper = new ObjectMapper();
- @PostMapping("/request-body-json-v1")
- public void requestBodyJsonV1(HttpServletRequest request,
-HttpServletResponse response) throws IOException {
- ServletInputStream inputStream = request.getInputStream();
- String messageBody = StreamUtils.copyToString(inputStream,
-StandardCharsets.UTF_8);
- log.info("messageBody={}", messageBody);
- HelloData data = objectMapper.readValue(messageBody, HelloData.class);
- log.info("username={}, age={}", data.getUsername(), data.getAge());
- response.getWriter().write("ok");
- }
+    private ObjectMapper objectMapper = new ObjectMapper();
+    
+    @PostMapping("/request-body-json-v1")
+    public void requestBodyJsonV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        log.info("messageBody={}", messageBody);
+        
+        HelloData data = objectMapper.readValue(messageBody, HelloData.class);
+        log.info("username={}, age={}", data.getUsername(), data.getAge());
+        
+        response.getWriter().write("ok");
+    }
 }
-HttpServletRequest를 사용해서 직접 HTTP 메시지 바디에서 데이터를 읽어와서, 문자로 변환한다.
+```
+HttpServletRequest를 사용해서 직접 HTTP 메시지 바디에서 데이터를 읽어와서, 문자로 변환한다.    
 문자로 된 JSON 데이터를 Jackson 라이브러리인 objectMapper 를 사용해서 자바 객체로 변환한다.
-Postman으로 테스트
-POST http://localhost:8080/request-body-json-v1
-raw, JSON, content-type: application/json
-{"username":"hello", "age":20}
-requestBodyJsonV2 - @RequestBody 문자 변환
+
+# @RequestBody 문자 변환
 /**
  * @RequestBody
  * HttpMessageConverter 사용 -> StringHttpMessageConverter 적용
@@ -54,6 +40,7 @@ requestBodyJsonV2 - @RequestBody 문자 변환
  * - 메시지 바디 정보 직접 반환(view 조회X)
  * - HttpMessageConverter 사용 -> StringHttpMessageConverter 적용
  */
+ 
 @ResponseBody
 @PostMapping("/request-body-json-v2")
 public String requestBodyJsonV2(@RequestBody String messageBody) throws
