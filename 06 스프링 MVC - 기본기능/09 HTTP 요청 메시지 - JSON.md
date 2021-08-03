@@ -96,7 +96,18 @@ public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) {
 ```   
 `HttpEntity`를 이용해서 요청 파라미터를 처리할 수 있다.        
 이전에 언급했듯이 Http 바디는 물론 헤더에 관한 처리도 할 수 있다.      
-     
+
+```java
+@ResponseBody
+@PostMapping("/request-body-json-v4")
+public String requestBodyJsonV4(Request<HelloData> httpEntity) {
+ HelloData data = httpEntity.getBody();
+ log.info("username={}, age={}", data.getUsername(), data.getAge());
+ return "ok";
+}
+```   
+Http 바디에 대해서만 작업을 하려면 `Request`를 이용해서 요청 파라미터를 처리할 수 있다.        
+             
 # @ResponseBody     
 ```java
 @ResponseBody
