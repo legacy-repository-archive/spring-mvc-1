@@ -27,49 +27,47 @@ HTTP 응답 - 정적 리소스, 뷰 템플릿
 
 # 뷰 템플릿   
 > 뷰 템플릿을 거쳐서 HTML이 생성되고, 뷰가 응답을 만들어서 전달한다.      
-
-
-일반적으로 HTML을 동적으로 생성하는 용도로 사용하지만, 다른 것들도 가능하다. 뷰 템플릿이 만들 수
-있는 것이라면 뭐든지 가능하다.
-스프링 부트는 기본 뷰 템플릿 경로를 제공한다.
-뷰 템플릿 경로
-src/main/resources/templates
-뷰 템플릿 생성
-src/main/resources/templates/response/hello.html
+    
+스프링 부트는 기본 뷰 템플릿 경로를 제공한다.        
+**뷰 템플릿 경로 :** `src/main/resources/templates`         
+   
+**src/main/resources/templates/response/hello.html**    
+```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
- <meta charset="UTF-8">
- <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-<p th:text="${data}">empty</p>
+    <p th:text="${data}">empty</p>
 </body>
 </html>
-ResponseViewController - 뷰 템플릿을 호출하는 컨트롤러
-package hello.springmvc.basic.response;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+```
+   
+**ResponseViewController - 뷰 템플릿을 호출하는 컨트롤러**
+```java
 @Controller
 public class ResponseViewController {
- @RequestMapping("/response-view-v1")
- public ModelAndView responseViewV1() {
- ModelAndView mav = new ModelAndView("response/hello")
- .addObject("data", "hello!");
- return mav;
- }
- @RequestMapping("/response-view-v2")
- public String responseViewV2(Model model) {
- model.addAttribute("data", "hello!!");
- return "response/hello";
- }
- @RequestMapping("/response/hello")
- public void responseViewV3(Model model) {
- model.addAttribute("data", "hello!!");
- }
+     
+     @RequestMapping("/response-view-v1")
+     public ModelAndView responseViewV1() {
+         ModelAndView mav = new ModelAndView("response/hello").addObject("data", "hello!");
+         return mav;
+     }
+     
+     @RequestMapping("/response-view-v2")
+     public String responseViewV2(Model model) {
+         model.addAttribute("data", "hello!!");
+         return "response/hello";
+     }
+     
+     @RequestMapping("/response/hello")
+     public void responseViewV3(Model model) {
+         model.addAttribute("data", "hello!!");
+     }
 }
+```
 String을 반환하는 경우 - View or HTTP 메시지
 @ResponseBody 가 없으면 response/hello 로 뷰 리졸버가 실행되어서 뷰를 찾고, 렌더링 한다.
 @ResponseBody 가 있으면 뷰 리졸버를 실행하지 않고, HTTP 메시지 바디에 직접 response/hello 라는
