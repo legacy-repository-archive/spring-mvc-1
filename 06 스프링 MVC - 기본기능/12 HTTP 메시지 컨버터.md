@@ -20,7 +20,6 @@ viewResolver 대신에 HttpMessageConverter 가 동작한다.
   
 byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있다.    
     
-
 **참고**   
 응답의 경우 `클라이언트의 HTTP Accept`헤더와 `서버의 컨트롤러 반환 타입 정보`,    
 이 둘을 조합해서 `HttpMessageConverter`가 선택된다.          
@@ -53,7 +52,6 @@ HTTP 메시지 컨버터는 `HTTP 요청`, `HTTP 응답` 두 관점에서 모두
 * `canRead()`, `canWrite()` : **메시지 컨버터가 해당 클래스, 미디어타입을 지원하는지 체크(Converter 사용 가능 체크)**        
 * `read()`, `write()` : **메시지 컨버터를 통해서 메시지를 읽고 쓰는 기능(실제 변환 로직)**            
     
-
 **스프링 부트 기본 메시지 컨버터**     
 |우선순위|컨버터 종류|   
 |-------|----------|   
@@ -62,9 +60,8 @@ HTTP 메시지 컨버터는 `HTTP 요청`, `HTTP 응답` 두 관점에서 모두
 |2|MappingJackson2HttpMessageConverter|
    
 스프링 부트는 다양한 메시지 컨버터를 제공하는데,     
-**대상 클래스 타입**과 **미디어 타입** 둘을 체크해서 사용 여부를 결정한다.      
+**`대상 클래스 타입`과 `미디어 타입` 둘을 체크해서 사용 여부를 결정한다.**          
 만약 만족하지 않으면 다음 메시지 컨버터로 우선순위가 넘어간다.    
-
 
 몇가지 주요한 메시지 컨버터를 알아보자.
 ByteArrayHttpMessageConverter : byte[] 데이터를 처리한다.
