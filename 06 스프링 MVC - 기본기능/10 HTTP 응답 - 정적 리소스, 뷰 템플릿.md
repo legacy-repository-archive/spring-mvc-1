@@ -95,8 +95,8 @@ implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 # application.properties
 spring.thymeleaf.prefix=classpath:/templates/
 spring.thymeleaf.suffix=.html
-```
-   
-**참고**     
+```  
+      
+**참고**       
 스프링 부트의 타임리프 관련 추가 설정은 다음 [공식 사이트](https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-applicationproperties.html#common-application-properties-templating)를 참고하자. (페이지 안에서 thymeleaf 검색)
-  
+    
