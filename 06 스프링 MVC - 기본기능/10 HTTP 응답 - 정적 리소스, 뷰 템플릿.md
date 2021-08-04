@@ -10,7 +10,9 @@ HTTP 응답 - 정적 리소스, 뷰 템플릿
     HTTP API를 제공하는 경우에는 HTML이 아니라 데이터를 전달해야 하므로,   
     HTTP 메시지 바디에 JSON 같은 형식으로 데이터를 실어 보낸다.
 
-# 정적 리소스
+# 정적 리소스  
+> 정적 리소스는 해당 파일을 변경 없이 그대로 서비스하는 것     
+   
 스프링 부트는 클래스패스의 다음 디렉토리에 있는 정적 리소스를 제공한다.   
             
 * **src/main/resources 하위** : `/static` , `/public` , `/resources` , `/META-INF/resources`  
@@ -19,13 +21,14 @@ HTTP 응답 - 정적 리소스, 뷰 템플릿
 따라서 **`src/main/resources`에 리소스를 넣어두면 스프링 부트가 정적 리소스로 서비스를 제공한다.**      
       
 **정적 리소스 반환**   
-`src/main/resources/static` 경로에 파일이 들어있으면 정적 리소스를 반환해준다.   
-정적 리소스는 해당 파일을 변경 없이 그대로 서비스하는 것이다.    
-정적 리소스 반환이란, Controller 를 통해 매핑되지 않은 경로로 데이터 요청시 바로 리소스를 반환하는 것을 말한다.     
-즉, `src/main/resources/static/basic/hello-form.html`을 입력하면 `hello-form.html`를 바로 반환한다.        
-        
-# 뷰 템플릿
-뷰 템플릿을 거쳐서 HTML이 생성되고, 뷰가 응답을 만들어서 전달한다.
+`src/main/resources/static` 경로에 파일이 들어있으면 정적 리소스를 반환해준다.     
+즉, `src/main/resources/static/basic/hello-form.html`을 입력하면 `hello-form.html`를 바로 반환한다.            
+사실 정적 리소스 반환이란, **Controller 를 통해 매핑되지 않은 경로로 데이터 요청시 바로 리소스를 반환하는 것을 말한다.**           
+
+# 뷰 템플릿   
+> 뷰 템플릿을 거쳐서 HTML이 생성되고, 뷰가 응답을 만들어서 전달한다.      
+
+
 일반적으로 HTML을 동적으로 생성하는 용도로 사용하지만, 다른 것들도 가능하다. 뷰 템플릿이 만들 수
 있는 것이라면 뭐든지 가능하다.
 스프링 부트는 기본 뷰 템플릿 경로를 제공한다.
