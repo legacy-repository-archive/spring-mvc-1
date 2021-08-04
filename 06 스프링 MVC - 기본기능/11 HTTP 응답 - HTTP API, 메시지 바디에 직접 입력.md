@@ -26,7 +26,7 @@ public class ResponseBodyController {
      }
 }
 ```
-## HttpServletResponse   
+# HttpServletResponse   
 ```java
 @Slf4j
 @RestController
@@ -41,7 +41,7 @@ public class ResponseBodyController {
 
 `HttpServletResponse` 객체를 통해서 HTTP 메시지 바디에 직접 ok 응답 메시지를 전달한다.
 
-## ResponseEntity(HttpEntity)   
+# ResponseEntity(HttpEntity)   
 
 ```java
 @Slf4j
@@ -54,11 +54,11 @@ public class ResponseBodyController {
      }
 }
 ```
-HttpEntity는 HTTP 메시지의 헤더, 바디 정보를 가지고 있다.   
-ResponseEntity는 HttpEntity 를 상속 받고 있으며 추가적으로 HTTP 응답 코드를 설정할 수 있다.
-만약, HttpStatus.CREATED 로 변경하면 201 응답이 나가는 것을 확인할 수 있다.     
-
-## @ResponseBody     
+HttpEntity는 HTTP 메시지의 헤더, 바디 정보를 가지고 있다.      
+ResponseEntity는 HttpEntity 를 상속 받고 있으며 추가적으로 HTTP 응답 코드를 설정할 수 있다.         
+만약, HttpStatus.CREATED 로 변경하면 201 응답이 나가는 것을 확인할 수 있다.          
+   
+# @ResponseBody     
 ```java
 @Slf4j
 @RestController
@@ -72,10 +72,10 @@ public class ResponseBodyController {
 }
 ```
    
-@ResponseBody 를 사용하면 view를 사용하지 않고,     
-HTTP 메시지 컨버터를 통해서 HTTP 메시지를 직접 입력할 수 있다.   
-
-## responseBodyJsonV1
+@ResponseBody 를 사용하면 view를 사용하지 않고,       
+HTTP 메시지 컨버터를 통해서 HTTP 메시지를 직접 입력할 수 있다.      
+  
+# 객체 반환 
 ```java
 @Slf4j
 @RestController
@@ -93,7 +93,7 @@ public class ResponseBodyController {
 ```
 ResponseEntity 를 반환한다. HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.
 
-## responseBodyJsonV2
+# responseBodyJsonV2
 ResponseEntity 는 HTTP 응답 코드를 설정할 수 있는데, @ResponseBody 를 사용하면 이런 것을
 설정하기 까다롭다.
 @ResponseStatus(HttpStatus.OK) 애노테이션을 사용하면 응답 코드도 설정할 수 있다.
