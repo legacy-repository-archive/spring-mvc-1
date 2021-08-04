@@ -1,6 +1,9 @@
 HTTP 메시지 컨버터
 ======================  
 
+![http-converter](https://user-images.githubusercontent.com/50267433/128208586-83a1086f-a38d-4851-961d-068008d77fcb.PNG)
+
+
 뷰 템플릿으로 HTML을 생성해서 응답하는 것이 아니라, HTTP API처럼 JSON 데이터를 HTTP 메시지
 바디에서 직접 읽거나 쓰는 경우 HTTP 메시지 컨버터를 사용하면 편리하다.
 HTTP 메시지 컨버터를 설명하기 전에 잠깐 과거로 돌아가서 스프링 입문 강의에서 설명했던 내용을
