@@ -45,9 +45,7 @@ public class ResponseBodyController {
      }
 }
 ```
-```java
-response.getWriter().write("ok")
-```
+
 `HttpServletResponse` 객체를 통해서 HTTP 메시지 바디에 직접 ok 응답 메시지를 전달한다.
 
 ## ResponseEntity(HttpEntity)   
