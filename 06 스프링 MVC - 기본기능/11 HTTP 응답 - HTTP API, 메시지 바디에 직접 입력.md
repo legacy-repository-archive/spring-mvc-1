@@ -69,7 +69,7 @@ public class ResponseBodyController {
 ```
 ResponseEntity 를 반환한다. HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.
   
-# ResponseEntity 객체 반환 및 @ResponseStatus    
+# 일반 객체 반환 및 @ResponseStatus    
 
 ```java
 @Slf4j
