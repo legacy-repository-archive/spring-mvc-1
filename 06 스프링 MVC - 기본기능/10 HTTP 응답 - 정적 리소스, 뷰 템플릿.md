@@ -74,22 +74,29 @@ public class ResponseViewController {
         
 **Void를 반환하는 경우**      
 * `@Controller`를 사용하고 `HttpServletResponse` , `OutputStream(Writer)`과 같은     
-  **HTTP 메시지 바디를 처리하는 파라미터가 없으면 요청 URL을 참고해서 논리 뷰 이름으로 사용한다.**              
+  **HTTP 메시지 바디를 처리하는 파라미터가 없으면 요청 URL을 참고해서 논리 뷰 이름으로 사용한다.**      
+  * **요청 URL:** `/response/hello`     
+  * **실행 URL:** `templates/response/hello.html`
 * 참고로 이 방식은 명시성이 너무 떨어지고 딱 맞는 경우도 많이 없어서 권장하지 않는다.        
     
 # HTTP 메시지      
 `@ResponseBody`, `HttpEntity`를 사용하면       
 뷰 템플릿을 사용이 아닌, **HTTP 메시지 바디에 직접 응답 데이터를 출력할 수 있다.**        
 
-Thymeleaf 스프링 부트 설정
-다음 라이브러리를 추가하면(이미 추가되어 있다.)
-build.gradle
-`implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'`
-스프링 부트가 자동으로 ThymeleafViewResolver 와 필요한 스프링 빈들을 등록한다. 그리고 다음
-설정도 사용한다. 이 설정은 기본 값 이기 때문에 변경이 필요할 때만 설정하면 된다.
-application.properties
+**Thymeleaf 스프링 부트 설정**
+```gradle
+// build.gradle  
+implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+```      
+스프링 부트가 자동으로 ThymeleafViewResolver 와 필요한 스프링 빈들을 등록한다.      
+그리고 **properties 설정**을 하는데 아래 설정은 기본 값으로 변경이 필요할 때 바꾸면 된다.       
+    
+```properties
+# application.properties
 spring.thymeleaf.prefix=classpath:/templates/
 spring.thymeleaf.suffix=.html
-> 참고
-> 스프링 부트의 타임리프 관련 추가 설정은 다음 공식 사이트를 참고하자. (페이지 안에서 thymeleaf 검색)
-> https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-applicationproperties.html#common-application-properties-templating
+```
+   
+**참고**     
+스프링 부트의 타임리프 관련 추가 설정은 다음 [공식 사이트](https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-applicationproperties.html#common-application-properties-templating)를 참고하자. (페이지 안에서 thymeleaf 검색)
+  
