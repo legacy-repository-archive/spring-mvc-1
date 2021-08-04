@@ -4,15 +4,8 @@ HTTP 응답 - HTTP API, 메시지 바디에 직접 입력
       
 ```java
 @Slf4j
-@Controller
-//@RestController
+@RestController
 public class ResponseBodyController {
- 
-     @ResponseBody
-     @GetMapping("/response-body-string-v3")
-     public String responseBodyV3() {
-         return "ok";
-     }
  
      @GetMapping("/response-body-json-v1")
      public ResponseEntity<HelloData> responseBodyJsonV1() {
@@ -36,7 +29,7 @@ public class ResponseBodyController {
 ## HttpServletResponse   
 ```java
 @Slf4j
-@Controller
+@RestController
 public class ResponseBodyController {
  
      @GetMapping("/response-body-string-v1")
@@ -52,7 +45,7 @@ public class ResponseBodyController {
 
 ```java
 @Slf4j
-@Controller
+@RestController
 public class ResponseBodyController {
  
      @GetMapping("/response-body-string-v2")
@@ -68,7 +61,7 @@ ResponseEntity는 HttpEntity 를 상속 받고 있으며 추가적으로 HTTP �
 ## @ResponseBody     
 ```java
 @Slf4j
-@Controller
+@RestController
 public class ResponseBodyController {
  
      @ResponseBody
@@ -83,6 +76,21 @@ public class ResponseBodyController {
 HTTP 메시지 컨버터를 통해서 HTTP 메시지를 직접 입력할 수 있다.   
 
 ## responseBodyJsonV1
+```java
+@Slf4j
+@RestController
+public class ResponseBodyController {
+
+     @GetMapping("/response-body-json-v1")
+     public ResponseEntity<HelloData> responseBodyJsonV1() {
+         HelloData helloData = new HelloData();
+         helloData.setUsername("userA");
+         helloData.setAge(20);
+         return new ResponseEntity<>(helloData, HttpStatus.OK);
+     }
+     
+} 
+```
 ResponseEntity 를 반환한다. HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.
 
 ## responseBodyJsonV2
