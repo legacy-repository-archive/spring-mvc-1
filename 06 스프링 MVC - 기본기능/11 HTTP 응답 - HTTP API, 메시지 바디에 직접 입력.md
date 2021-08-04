@@ -1,7 +1,10 @@
 HTTP 응답 - HTTP API, 메시지 바디에 직접 입력  
 ============================================
 `HTTP API`를 제공하는 경우에는 **HTTP 메시지 바디에 JSON 같은 형식으로 데이터를 실어 보낸다.**      
-      
+    
+* **text/plain 등등 :** StringHttpMessageConverter
+* **application/json :** MappingJackson2HttpMessageConverter     
+    
 # HttpServletResponse   
 ```java
 @Slf4j
@@ -67,13 +70,8 @@ public class ResponseBodyController {
      
 } 
 ```
-ResponseEntity를 반환한다.       
-HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.    
-`객체` -> `HTTP 메시지 컨버터` -> `JSON 응답`  
-   
-* 문자열 : 스트링 컨버터  
-* 객체 : json 컨버터     
-   
+ResponseEntity를 반환하며 HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.    
+ 
 # 일반 객체 반환 및 @ResponseStatus    
 
 ```java
