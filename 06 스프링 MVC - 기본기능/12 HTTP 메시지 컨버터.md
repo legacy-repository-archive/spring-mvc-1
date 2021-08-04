@@ -69,8 +69,8 @@ HTTP 메시지 컨버터는 `HTTP 요청`, `HTTP 응답` 두 관점에서 모두
 * 클래스 타입: byte[]  
 * 미디어타입: */* 
      
-요청 예) @RequestBody byte[] data     
-응답 예) @ResponseBody return byte[] / 쓰기 미디어타입 application/octet-stream    
+👉 요청 예) @RequestBody byte[] data       
+👉 응답 예) @ResponseBody return byte[] / 쓰기 미디어타입 application/octet-stream       
 
 
 # StringHttpMessageConverter
@@ -79,8 +79,8 @@ HTTP 메시지 컨버터는 `HTTP 요청`, `HTTP 응답` 두 관점에서 모두
 * 클래스 타입: String 
 * 미디어타입: */*   
    
-요청 예) @RequestBody String data
-응답 예) @ResponseBody return "ok" / 쓰기 미디어타입 text/plain   
+👉 요청 예) @RequestBody String data      
+👉 응답 예) @ResponseBody return "ok" / 쓰기 미디어타입 text/plain       
   
 # MappingJackson2HttpMessageConverter   
 > application/json
@@ -88,8 +88,8 @@ HTTP 메시지 컨버터는 `HTTP 요청`, `HTTP 응답` 두 관점에서 모두
 * 클래스 타입: 객체 또는 HashMap  
 * 미디어타입 application/json 관련
 
-요청 예) @RequestBody HelloData data
-응답 예) @ResponseBody return helloData / 쓰기 미디어타입 application/json 관련
+👉 요청 예) @RequestBody HelloData data      
+👉 응답 예) @ResponseBody return helloData / 쓰기 미디어타입 application/json 관련     
   
 StringHttpMessageConverter
 content-type: application/json
