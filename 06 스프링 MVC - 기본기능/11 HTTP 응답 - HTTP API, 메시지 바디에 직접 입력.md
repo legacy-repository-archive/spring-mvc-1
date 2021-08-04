@@ -67,8 +67,13 @@ public class ResponseBodyController {
      
 } 
 ```
-ResponseEntity 를 반환한다. HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.
-  
+ResponseEntity를 반환한다.       
+HTTP 메시지 컨버터를 통해서 JSON 형식으로 변환되어서 반환된다.    
+`객체` -> `HTTP 메시지 컨버터` -> `JSON 응답`  
+   
+* 문자열 : 스트링 컨버터  
+* 객체 : json 컨버터     
+   
 # 일반 객체 반환 및 @ResponseStatus    
 
 ```java
@@ -90,10 +95,16 @@ public class ResponseBodyController {
 ResponseEntity는 HTTP 응답 코드를 설정할 수 있는데,             
 **일반  객체에 @ResponseBody를 사용하면 이런 것을 설정하기 까다롭다.**              
 이럴 때, `@ResponseStatus(HttpStatus.OK)` 어노테이션을 사용하면 응답 코드도 설정할 수 있다.         
-          
-물론 어노테이션이기 때문에 응답 코드를 동적으로 변경할 수는 없다.      
-프로그램 조건에 따라서 동적으로 변경하려면 ResponseEntity 를 사용하면 된다.       
-     
+            
+물론 어노테이션이기 때문에 응답 코드를 동적으로 변경할 수는 없다.        
+프로그램 조건에 따라서 동적으로 변경하려면 ResponseEntity 를 사용하면 된다.         
+   
+**@RequestBody 요청**  
+* `JSON 요청` -> `HTTP 메시지` -> `컨버터 객체`    
+         
+**@ResponseBody 응답**     
+* `객체` -> `HTTP 메시지 컨버터` -> `JSON 응답`   
+  
 **@RestController**    
 @Controller 대신에 @RestController 애노테이션을 사용하면,     
 해당 컨트롤러에 모두 @ResponseBody 가 적용되는 효과가 있다.     
