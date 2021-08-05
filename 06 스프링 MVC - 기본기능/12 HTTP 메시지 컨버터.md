@@ -25,7 +25,7 @@ HTTP API처럼 JSON 데이터를 HTTP 메시지 바디에서 직접 읽거나 �
 * **HTTP 응답 :** `@ResponseBody`, `HttpEntity(ResponseEntity)`       
   
 # HTTP 메시지 컨버터 인터페이스
-**org.springframework.http.converter.HttpMessageConverter**  
+**HttpMessageConverter**  
 ```java
 package org.springframework.http.converter;
 
