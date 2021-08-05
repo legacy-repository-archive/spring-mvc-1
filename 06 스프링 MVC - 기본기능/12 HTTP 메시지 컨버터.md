@@ -20,7 +20,7 @@ HTTP API처럼 JSON 데이터를 HTTP 메시지 바디에서 직접 읽거나 �
 응답의 경우 `클라이언트의 HTTP Accept`헤더와 `서버의 컨트롤러 반환 타입 정보`,    
 이 둘을 조합해서 `HttpMessageConverter`가 선택된다.          
        
-스프링 MVC는 다음의 경우에 HTTP 메시지 컨버터를 적용한다.   
+**스프링 MVC는 다음의 경우에 HTTP 메시지 컨버터를 적용한다.**       
 * **HTTP 요청 :** `@RequestBody`, `HttpEntity(RequestEntity)`   
 * **HTTP 응답 :** `@ResponseBody`, `HttpEntity(ResponseEntity)`       
   
