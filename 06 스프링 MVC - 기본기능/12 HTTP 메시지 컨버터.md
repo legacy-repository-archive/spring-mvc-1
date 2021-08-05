@@ -115,19 +115,19 @@ void hello(@RequetsBody HelloData data) {}
 ```
 
 **HTTP 요청 데이터 읽기**
-1. HTTP 요청이 오고, 컨트롤러에서 @RequestBody , HttpEntity 파라미터를 사용한다.
-2. 메시지 컨버터가 메시지를 읽을 수 있는지 확인하기 위해 canRead() 를 호출한다.
-    * 대상 클래스 타입을 지원하는가.   
-        * 예) @RequestBody 의 대상 클래스 ( byte[] , String , HelloData )
-    * HTTP 요청의 Content-Type 미디어 타입을 지원하는가.
-        * 예) text/plain , application/json , */*
-3. canRead() 조건을 만족하면 read() 를 호출해서 객체 생성하고, 반환한다.
+1. HTTP 요청이 오고, 컨트롤러에서 `@RequestBody`, `HttpEntity` 파라미터를 사용한다.
+2. 메시지 컨버터가 메시지를 읽을 수 있는지 확인하기 위해 `canRead()`를 호출한다.
+    * **대상 클래스 타입을 지원하는가.**   
+        * 예) @RequestBody 의 대상 클래스 ( `byte[]` , `String` , `HelloData` )
+    * **HTTP 요청의 `Content-Type` 미디어 타입을 지원하는가.**
+        * 예) `text/plain` , `application/json` , `*/*`
+3. `canRead()` 조건을 만족하면 `read()` 를 호출해서 객체 생성하고, 반환한다.    
 
 **HTTP 응답 데이터 생성**
-1. 컨트롤러에서 @ResponseBody , HttpEntity 로 값이 반환된다.
-2. 메시지 컨버터가 메시지를 쓸 수 있는지 확인하기 위해 canWrite() 를 호출한다.
-    * 대상 클래스 타입을 지원하는가.
-        * 예) return의 대상 클래스 ( byte[] , String , HelloData )
-    * HTTP 요청의 Accept 미디어 타입을 지원하는가.(더 정확히는 @RequestMapping 의 produces )
-        * 예) text/plain , application/json , */*
-3. canWrite() 조건을 만족하면 write() 를 호출해서 HTTP 응답 메시지 바디에 데이터를 생성한다.
+1. 컨트롤러에서 `@ResponseBody` , `HttpEntity`로 값이 반환된다.
+2. 메시지 컨버터가 메시지를 쓸 수 있는지 확인하기 위해 `canWrite()`를 호출한다.
+    * **대상 클래스 타입을 지원하는가.**
+        * 예) return의 대상 클래스 ( `byte[]` , `String` , `HelloData` )
+    * **HTTP 요청의 Accept 미디어 타입을 지원하는가.(더 정확히는 @RequestMapping 의 produces )**   
+        * 예) `text/plain` , `application/json` , `*/*`
+3. `canWrite()` 조건을 만족하면 `write()` 를 호출해서 HTTP 응답 메시지 바디에 데이터를 생성한다.
