@@ -1,30 +1,25 @@
 HTTP 메시지 컨버터
 ======================  
-
-![http-converter](https://user-images.githubusercontent.com/50267433/128208586-83a1086f-a38d-4851-961d-068008d77fcb.PNG)
-
-
-뷰 템플릿으로 HTML을 생성해서 응답하는 것이 아니라, HTTP API처럼 JSON 데이터를 HTTP 메시지
-바디에서 직접 읽거나 쓰는 경우 HTTP 메시지 컨버터를 사용하면 편리하다.
-HTTP 메시지 컨버터를 설명하기 전에 잠깐 과거로 돌아가서 스프링 입문 강의에서 설명했던 내용을
-살펴보자.
-
+  
+뷰 템플릿으로 HTML을 생성해서 응답하는 것이 아니라,    
+HTTP API처럼 JSON 데이터를 HTTP 메시지 바디에서 직접 읽거나 쓰는 경우 HTTP 메시지 컨버터를 사용하면 편리하다.   
+  
 # @ResponseBody 사용 원리    
-  
-**@ResponseBody**       
-HTTP의 BODY에 문자 내용을 직접 반환한다.        
-viewResolver 대신에 HttpMessageConverter 가 동작한다.          
 
-* **기본 문자처리:** `StringHttpMessageConverter`   
-* **기본 객체처리:** `MappingJackson2HttpMessageConverter`  
+![http-converter](https://user-images.githubusercontent.com/50267433/128208586-83a1086f-a38d-4851-961d-068008d77fcb.PNG)  
   
-byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있다.    
-    
+**@ResponseBody**          
+`@ResponseBody`는 핸들러로부터 반환된 데이터를 `Http body`에 문자로 반환을 한다.              
+이 과정에서 **데이터를 `Http body`에 넣기 위해 HttpMessageConverter 구현체를 사용한다.**                  
+     
+* **기본 문자처리:** `StringHttpMessageConverter`     
+* **기본 객체처리:** `MappingJackson2HttpMessageConverter`        
+* **byte 처리 및 기타 등등:** `HttpMessageConverter`(사실 가장 기본)       
+       
 **참고**   
 응답의 경우 `클라이언트의 HTTP Accept`헤더와 `서버의 컨트롤러 반환 타입 정보`,    
 이 둘을 조합해서 `HttpMessageConverter`가 선택된다.          
-  
-     
+       
 스프링 MVC는 다음의 경우에 HTTP 메시지 컨버터를 적용한다.   
 * **HTTP 요청 :** `@RequestBody`, `HttpEntity(RequestEntity)`   
 * **HTTP 응답 :** `@ResponseBody`, `HttpEntity(ResponseEntity)`       
